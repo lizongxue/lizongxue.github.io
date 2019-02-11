@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>linux sphinx的安装配置和中文分词包coreseek | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载至https://blog.csdn.net/ownfire/article/details/39316743 sphinx在此处下载： http://sphinxsearch.com/downloads/release/ 本次我下的是2.2.4版本 自持中文分词的包叫做coreseek，其实就是带了中文分词插件的sphinx，在此处下载： http://www.coreseek.cn/ 本">
+<meta name="keywords" content="linux,coreseek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux sphinx的安装配置和中文分词包coreseek">
+<meta property="og:url" content="https://lizongxue.github.io/2014/10/10/linux-sphinx的安装配置和中文分词包coreseek/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="转载至https://blog.csdn.net/ownfire/article/details/39316743 sphinx在此处下载： http://sphinxsearch.com/downloads/release/ 本次我下的是2.2.4版本 自持中文分词的包叫做coreseek，其实就是带了中文分词插件的sphinx，在此处下载： http://www.coreseek.cn/ 本">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-11T07:29:00.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux sphinx的安装配置和中文分词包coreseek">
+<meta name="twitter:description" content="转载至https://blog.csdn.net/ownfire/article/details/39316743 sphinx在此处下载： http://sphinxsearch.com/downloads/release/ 本次我下的是2.2.4版本 自持中文分词的包叫做coreseek，其实就是带了中文分词插件的sphinx，在此处下载： http://www.coreseek.cn/ 本">
+  
+    <link rel="alternate" href="/atom.xml" title="李宗雪的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-linux-sphinx的安装配置和中文分词包coreseek" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/10/linux-sphinx的安装配置和中文分词包coreseek/" class="article-date">
+  <time datetime="2014-10-10T06:32:00.000Z" itemprop="datePublished">2014-10-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux sphinx的安装配置和中文分词包coreseek
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p> 转载至<a href="https://blog.csdn.net/ownfire/article/details/39316743" target="_blank" rel="noopener">https://blog.csdn.net/ownfire/article/details/39316743</a></p>
+<p>sphinx在此处下载：</p>
+<p><a href="http://sphinxsearch.com/downloads/release/" target="_blank" rel="noopener">http://sphinxsearch.com/downloads/release/</a></p>
+<p>本次我下的是2.2.4版本</p>
+<p>自持中文分词的包叫做coreseek，其实就是带了中文分词插件的sphinx，在此处下载：</p>
+<p><a href="http://www.coreseek.cn/" target="_blank" rel="noopener">http://www.coreseek.cn/</a></p>
+<p>本次我下的是稳定版3.2.14</p>
+<p>先写个结论，sphinx本身是可以支持中文搜索的，只是不支持中文分词，需要安装中文分词插件，coreseek就是一个打包了mmseg中文分词插件和sphinx源码的安装包</p>
+<p>目前coreseek已经很久不更新了，稳定版3.2.14内带的的sphinx还是 0.9.9 release版本的；而sphinx可以通过设置为“一元切分模式”来支持搜索中文</p>
+<p>在实际使用中，搜索非中文的话，sphinx比coreseek要快；搜索短中文字符串的话，开启了“一元切分模式”的sphinx比coreseek要快；只有在搜索长中文字串时，coreseek的分词优势才能显现，比sphinx要快</p>
+<p>所以根据你的应用场景来选择用哪个，如果是索引英文、数字、字符较多的数据，就用源生sphinx；如果是索引中文非常多非常长的数据，还是用coreseek吧</p>
+<p>下面先来讲sphinx的安装和配置：</p>
+<p>把包下载下来，我下的是<a href="http://sphinxsearch.com/files/sphinx-2.2.4-release.tar.gz" target="_blank" rel="noopener">http://sphinxsearch.com/files/sphinx-2.2.4-release.tar.gz</a></p>
+<p>tar xzvf sphinx-2.2.4-release.tar.gz</p>
+<p>cd sphinx-2.2.4-release</p>
+<p>./configure –prefix=/usr/local/sphinx/   –with-mysql  –enable-id64 #如果是64位的才加这个选项</p>
+<p>make</p>
+<p>make install</p>
+<p>一开始以为libiconv的问题，又重装了几次还是一样，最后终于找着办法了<br>编辑：<br>./src/MakeFile文件<br>将<br>LIBS = -lm -lexpat -L/usr/local/lib<br>改成<br>LIBS = -lm -lexpat -liconv -L/usr/local/lib<br>这样就装好了，现在来配置</p>
+<p>cp /usr/local/sphinx/etc/sphinx-min.conf.dist /usr/local/sphinx/etc/test.conf</p>
+<p>vim /usr/local/sphinx/etc/test.conf</p>
+<ol>
+<li>sphinx配置文件结构介绍</li>
+</ol>
+<p>Sphinx的配置文件结构如下：</p>
+<p>Source 源名称1{     </p>
+<p>#添加数据源，这里会设置一些连接数据库的参数比如数据库的IP、用户名、密码等</p>
+<p>#设置sql_query、设置sql_query_pre、设置sql_query_range等后面会结合例子做详细介绍</p>
+<p> ……</p>
+<p>}</p>
+<p>Index 索引名称1{</p>
+<pre><code>Source=源名称1
+</code></pre><p>#设置全文索引</p>
+<pre><code>……
+</code></pre><p>}</p>
+<p>Indexer{</p>
+<p>#设置Indexer程序配置选项，如内存限制等</p>
+<p>……</p>
+<p>}</p>
+<p>Searchd{  </p>
+<p>#设置Searchd守护进程本身的一些参数</p>
+<p>……</p>
+<p>}</p>
+<p>Source和Index都可以配置多个。</p>
+<ol start="2">
+<li>spinx配置案例详细解释</li>
+</ol>
+<p>接下来就来针对一个配置案例来做详细的配置介绍：</p>
+<p>#定义一个数据源</p>
+<p>source search_main</p>
+<p>{</p>
+<pre><code>#定义数据库类型
+</code></pre><p>   type                 = mysql</p>
+<pre><code>#定义数据库的IP或者计算机名
+</code></pre><p>   sql_host             = localhost</p>
+<pre><code>#定义连接数据库的帐号
+</code></pre><p>   sql_user             = root</p>
+<pre><code>#定义链接数据库的密码
+</code></pre><p>   sql_pass             = test123</p>
+<pre><code>#定义数据库名称
+</code></pre><p>   sql_db               = test</p>
+<pre><code>#定义连接数据库后取数据之前执行的SQL语句
+</code></pre><p>   sql_query_pre        = SET NAMESutf8</p>
+<p>   sql_query_pre        = SET SESSIONquery_cache_type=OFF</p>
+<pre><code>#创建一个sph_counter用于增量索引
+</code></pre><p>   sql_query_pre        = CREATETABLE IF NOT EXISTS sph_counter \</p>
+<pre><code>                           ( counter_id INTEGER PRIMARY KEY NOTNULL,max_doc_id INTEGER NOT NULL)
+
+#取数据之前将表的最大id记录到sph_counter表中
+</code></pre><p>   sql_query_pre        = REPLACEINTO sph_counter SELECT 1, MAX(searchid) FROM v9_search</p>
+<pre><code>       #定义取数据的SQL，第一列ID列必须为唯一的正整数值
+
+sql_query            = SELECTsearchid,typeid,id,adddate,data FROM v9_search where \
+
+                                  searchid&lt;(SELECT max_doc_id FROM sph_counter WHERE counter_id=1 ) \
+
+                                    andsearchid&gt;=$start AND searchid&lt;=$end
+
+       #sql_attr_uint和sql_attr_timestamp用于定义用于api过滤或者排序，写多行制定多列
+</code></pre><p>   sql_attr_uint        = typeid</p>
+<p>   sql_attr_uint        = id</p>
+<p>   sql_attr_timestamp   = adddate</p>
+<pre><code>#分区查询设置
+</code></pre><p>   sql_query_range      = SELECTMIN(searchid),MAX(searchid) FROM v9_search</p>
+<pre><code>#分区查询的步长
+</code></pre><p>   sql_range_step       = 1000</p>
+<pre><code>#设置分区查询的时间间隔
+</code></pre><p>   sql_ranged_throttle  = 0</p>
+<pre><code>#用于CLI的调试
+</code></pre><p>   sql_query_info       = SELECT *FROM v9_search WHERE searchid=$id</p>
+<p>}</p>
+<p>#定义一个增量的源</p>
+<p>source search_main_delta : search_main</p>
+<p>{</p>
+<p>   sql_query_pre       = set namesutf8</p>
+<pre><code>#增量源只查询上次主索引生成后新增加的数据
+</code></pre><p>#如果新增加的searchid比主索引建立时的searchid还小那么会漏掉</p>
+<p>   sql_query           = SELECTsearchid,typeid,id,adddate,data FROM v9_search where  \</p>
+<pre><code>searchid&gt;(SELECT max_doc_id FROM sph_counter WHERE counter_id=1 ) \
+
+ andsearchid&gt;=$start AND searchid&lt;=$end
+</code></pre><p>   sql_query_range     = SELECTMIN(searchid),MAX(searchid) FROM v9_search where \</p>
+<pre><code>searchid&gt;(SELECT max_doc_id FROM sph_counter WHERE counter_id=1 )
+</code></pre><p>}</p>
+<p>#定义一个index_search_main索引</p>
+<p>index index_search_main</p>
+<p>{</p>
+<pre><code>#设置索引的源
+</code></pre><p>   source            = search_main</p>
+<pre><code>#设置生成的索引存放路径
+</code></pre><p>   path         =/usr/local/coreseek/var/data/index_search_main</p>
+<pre><code>#定义文档信息的存储模式，extern表示文档信息和文档id分开存储
+</code></pre><p>   docinfo           = extern</p>
+<pre><code>#设置已缓存数据的内存锁定，为0表示不锁定
+</code></pre><p>   mlock             = 0</p>
+<pre><code>#设置词形处理器列表，设置为none表示不使用任何词形处理器
+</code></pre><p>   morphology        = none</p>
+<pre><code>#定义最小索引词的长度
+</code></pre><p>   min_word_len      = 1</p>
+<pre><code>#设置字符集编码类型，我这里采用的utf8编码和数据库的一致
+</code></pre><p>   charset_type      = zh_cn.utf-8</p>
+<pre><code>#指定分词读取词典文件的位置
+</code></pre><p>   charset_dictpath  =/usr/local/mmseg3/etc</p>
+<pre><code>#不被搜索的词文件里表。
+</code></pre><p>   stopwords       =/usr/local/coreseek/var/data/stopwords.txt</p>
+<pre><code>#定义是否从输入全文数据中取出HTML标记
+</code></pre><p>   html_strip       = 0</p>
+<p>}</p>
+<p>#定义增量索引</p>
+<p>index index_search_main_delta : index_search_main</p>
+<p>{</p>
+<p>   source   = search_main_delta</p>
+<p>   path    =/usr/local/coreseek/var/data/index_search_main_delta</p>
+<p>}</p>
+<p>#定义indexer配置选项</p>
+<p>indexer</p>
+<p>{</p>
+<pre><code>#定义生成索引过程使用索引的限制
+</code></pre><p>   mem_limit        = 512M</p>
+<p>}</p>
+<p>#定义searchd守护进程的相关选项</p>
+<p>searchd</p>
+<p>{</p>
+<pre><code>#定义监听的IP和端口
+</code></pre><p>   #listen            = 127.0.0.1</p>
+<p>   #listen            =172.16.88.100:3312</p>
+<pre><code>listen            = 3312
+
+listen            = /var/run/searchd.sock
+
+       #定义log的位置
+</code></pre><p>   log                =/usr/local/coreseek/var/log/searchd.log</p>
+<pre><code>#定义查询log的位置
+</code></pre><p>   query_log          =/usr/local/coreseek/var/log/query.log</p>
+<pre><code>#定义网络客户端请求的读超时时间
+</code></pre><p>   read_timeout       = 5</p>
+<pre><code>#定义子进程的最大数量
+</code></pre><p>   max_children       = 300</p>
+<pre><code>#设置searchd进程pid文件名
+</code></pre><p>   pid_file           =/usr/local/coreseek/var/log/searchd.pid</p>
+<pre><code>#定义守护进程在内存中为每个索引所保持并返回给客户端的匹配数目的最大值
+</code></pre><p>   max_matches        = 100000</p>
+<pre><code>       #启用无缝seamless轮转，防止searchd轮转在需要预取大量数据的索引时停止响应
+
+#也就是说在任何时刻查询都可用，或者使用旧索引，或者使用新索引
+</code></pre><p>   seamless_rotate    = 1</p>
+<pre><code>#配置在启动时强制重新打开所有索引文件
+</code></pre><p>   preopen_indexes    = 1</p>
+<pre><code>#设置索引轮转成功以后删除以.old为扩展名的索引拷贝
+</code></pre><p>   unlink_old         = 1</p>
+<pre><code># MVA更新池大小，这个参数不太明白
+</code></pre><p>   mva_updates_pool   = 1M</p>
+<pre><code>#最大允许的包大小
+</code></pre><p>   max_packet_size    = 32M</p>
+<pre><code>#最大允许的过滤器数
+</code></pre><p>   max_filters        = 256</p>
+<pre><code>#每个过滤器最大允许的值的个数
+</code></pre><p>   max_filter_values  = 4096</p>
+<p>}</p>
+<p>综合上面的资料，我对test.conf作了如下配置：</p>
+<p>source message1<br>{<br>        type                    = mysql</p>
+<pre><code>sql_host                = 127.0.0.1
+sql_user                = root
+sql_pass                = 123456
+sql_db                  = yh_comment
+sql_port                = 3308  # optional, default is 3306
+
+sql_query_pre           = SET NAMES utf8
+sql_query               = \
+        SELECT id,bid,uid,content,valid,createtime \
+        FROM tbl_cmt00 \
+        UNION SELECT id,bid,uid,content,valid,createtime \
+        FROM tbl_cmt01 \
+        UNION SELECT id,bid,uid,content,valid,createtime \
+        FROM tbl_cmt02 \
+        UNION SELECT id,bid,uid,content,valid,createtime \
+        FROM tbl_cmt03
+
+sql_field_string                = bid
+sql_attr_uint           = uid
+sql_field_string        = content
+sql_attr_string         = valid
+sql_field_string        = createtime
+</code></pre><p>}</p>
+<p>index message1<br>{<br>        source                  = message1<br>        path                    = /usr/local/sphinx/var/data/message1<br>        ngram_len               = 1 #表示使用一元字符切分模式，从而得以对单个中文字符进行索引<br>        ngram_chars             = U+3000..U+2FA1F, U+FF41..U+FF5A-&gt;a..z, U+FF21..U+FF3A-&gt;a..z, A..Z-&gt;a..z, a..z #表示要进行一元字符切分模式的字符集<br>}</p>
+<p>indexer<br>{<br>        mem_limit               = 128M<br>}</p>
+<p>searchd<br>{<br>        listen                  = 9412<br>        log                     = /usr/local/sphinx/var/log/searchd-message1.log<br>        query_log               = /usr/local/sphinx/var/log/query-message1.log<br>        read_timeout            = 5<br>        max_children            = 30<br>        pid_file                = /usr/local/sphinx/var/log/searchd-message1.pid</p>
+<pre><code>#max_matches            = 1000
+seamless_rotate         = 1
+preopen_indexes         = 1
+unlink_old              = 1
+workers                 = threads # for RT to work
+binlog_path             = /usr/local/sphinx/var/data
+</code></pre><p>}</p>
+<p>上面的配置是已经开启“一元切分模式”</p>
+<p>他的端口是3308，我的是3306</p>
+<p>这样配置就完成了，接下来要生成索引和开启守护进程：</p>
+<p>/usr/local/sphinx/bin/indexer -c /usr/local/sphinx/etc/test.conf –all</p>
+<p>/usr/local/sphinx/bin/searchd -c /usr/local/sphinx/etc/test.conf</p>
+<p>如果在建立索引的过程中出现”No fields in schema”的错误，原因是：sphinx对于sql数据源需要至少一个sql_field_string，当没有指定sql_field_string时会将数据源中没有明确指定为sql_attr_string的字符串字段用来做sql_field_string。当全部字符串字段设为sql_attr_string时不能建立索引，而随便注释一条sql_attr_string，或者选择一条sql_attr_string变为sql_field_string，就可以了</p>
+<p>如果数据库更新了，需要重新建立索引，重输一遍上面简历索引的指令就行</p>
+<p>如果重建索引时守护进程正在运行，会报错，需要运行下面的指令，会重建索引并且重开守护进程<br>现在进行php和sphinx的交互：</p>
+<p>到<a href="http://pecl.php.net/package/sphinx下载php的sphinx模块，放到php中引用起来，方法不在此赘述" target="_blank" rel="noopener">http://pecl.php.net/package/sphinx下载php的sphinx模块，放到php中引用起来，方法不在此赘述</a></p>
+<p>vim test.php</p>
+<p>$sphinx = new SphinxClient;</p>
+<p>//sphinx的主机名和端口</p>
+<p>$sphinx-&gt;SetServer ( ‘192.168.1.168’, 9412 );</p>
+<p>$sphinx-&gt;SetConnectTimeout ( 1 );</p>
+<p>//设置返回结果集为php数组格式<br>$sphinx-&gt;SetArrayResult ( true );</p>
+<p>//匹配结果的偏移量，参数的意义依次为：起始位置，返回结果条数，最大匹配条数</p>
+<p>$sphinx-&gt;SetLimits(0, 20, 1000);</p>
+<p>//最大搜索时间</p>
+<p>$sphinx-&gt;SetMaxQueryTime(10);</p>
+<p>//索引源是配置文件中的 index 类，如果有多个索引源可使用,号隔开：’email,diary’ 或者使用’*’号代表全部索引源</p>
+<p>$index = ‘message1’;</p>
+<p>//搜索关键字</p>
+<p>$result = $sphinx-&gt;Query ( ‘你要搜索的非中文/中文字串’, “*” );</p>
+<p>if (!$result){<br>    print_r($sphinx-&gt;getLastError());<br>}</p>
+<p>print_r($result);</p>
+<p>现在来讲coreseek的安装配置：</p>
+<p>把包下载下来，我下载的地址是<a href="http://files.opstool.com/man/coreseek-4.1-beta.tar.gz" target="_blank" rel="noopener">http://files.opstool.com/man/coreseek-4.1-beta.tar.gz</a> </p>
+<p>安装过程可以参考官网文档<a href="http://www.coreseek.cn/products-install/install_on_bsd_linux/" target="_blank" rel="noopener">http://www.coreseek.cn/products-install/install_on_bsd_linux/</a></p>
+<p>我直接复制过来，照着打命令就可以了</p>
+<p>##前提：需提前安装操作系统基础开发库及mysql依赖库以支持mysql数据源和xml数据源 ##安装mmseg $ cd mmseg-3.2.14 $ ./bootstrap #输出的warning信息可以忽略，如果出现error则需要解决 $ ./configure –prefix=/usr/local/mmseg3 $ make &amp;&amp; make install $ cd .. ##安装coreseek $ cd csft-3.2.14 或者 cd csft-4.0.1 或者 cd csft-4.1 $ sh buildconf.sh #输出的warning信息可以忽略，如果出现error则需要解决 $ ./configure –prefix=/usr/local/coreseek –without-unixodbc –with-mmseg –with-mmseg-includes=/usr/local/mmseg3/include/mmseg/ –with-mmseg-libs=/usr/local/mmseg3/lib/ –with-mysql ##如果提示mysql问题，可以查看MySQL数据源安装说明 $ make &amp;&amp; make install $ cd ..</p>
+<p>  安装coreseek的时候，发现编辑的的时候总是出错</p>
+<p>/root/coreseek-4.1-beta/csft-4.1/src/sphinx.cpp:22292: undefined reference to <code>libiconv_open&#39;
+ /root/coreseek-4.1-beta/csft-4.1/src/sphinx.cpp:22310: undefined reference to</code>libiconv’<br> /root/coreseek-4.1-beta/csft-4.1/src/sphinx.cpp:22316: undefined reference to <code>libiconv_close&#39;
+ collect2: ld returned 1 exit status
+ make[2]: *** [indexer] Error 1
+ make[2]: Leaving directory</code>/root/coreseek-4.1-beta/csft-4.1/src’<br> make[1]: <strong><em> [all] Error 2<br> make[1]: Leaving directory `/root/coreseek-4.1-beta/csft-4.1/src’<br> make: </em></strong> [all-recursive] Error 1</p>
+<p>在其它机器上未发现此错误.</p>
+<p>一开始以为libiconv的问题，又重装了几次还是一样，最后终于找着办法了<br> 编辑：<br> ./src/MakeFile文件<br> 将<br> LIBS = -lm -lexpat -L/usr/local/lib<br> 改成<br> LIBS = -lm -lexpat -liconv -L/usr/local/lib</p>
+<p>就可以了。</p>
+<p>这样就算装好了<br>接下来同样是配置，和sphinx有些不一样</p>
+<p>同样是参考官网文档<a href="http://www.coreseek.cn/products-install/coreseek_mmseg/" target="_blank" rel="noopener">http://www.coreseek.cn/products-install/coreseek_mmseg/</a></p>
+<p>#以下部分为中文分词核心配置 #stopwords = /path/to/stowords.txt的位置 charset_dictpath = /usr/local/mmseg3/etc/ charset_type = zh_cn.utf-8 #charset_table = ……………….. #需将原有 的该配置注释掉 ngram_len = 0 #以上部分为中文分词核心配置</p>
+<p>关键在于：</p>
+<p>#必须设置，表示词典文件的目录，该目录下必须有uni.lib词典文件存在</p>
+<p>charset_dictpath=/usr/local/mmseg3/etc/</p>
+<p>#必须设置，表示启用中文分词功能；否则中文分词功能无效，使用sphinx的其他处理模式</p>
+<p>charset_type=zh_cn.utf-8</p>
+<p>#必须设置，表示取消原有的一元字符切分模式，不使其对中文分词产生干扰</p>
+<p>ngram_len=0</p>
+<p>#charset_table的配置需要注释掉！</p>
+<p>#charset_table=……</p>
+<p>我的配置是</p>
+<p>source message1<br>{<br>        type                                    = mysql</p>
+<pre><code>sql_host                                = 127.0.0.1
+sql_user                                = root
+sql_pass                                = 123456
+sql_db                                  = yh_comment
+sql_port                                = 3308  # optional, default is 3306
+
+sql_query_pre                           = SET NAMES utf8
+sql_query_pre                           = SET SESSION query_cache_type=OFF
+sql_query                               = \
+        SELECT id,bid,uid,content,valid,createtime FROM tbl_cmt00
+
+sql_attr_uint                   = uid
+
+sql_query_info                  = SELECT * FROM tbl_cmt00 WHERE id=$id
+</code></pre><p>}</p>
+<p>index message1<br>{<br>        source                                  = message1<br>        path                                    = /usr/local/coreseek/var/data/message1<br>        docinfo                                 = extern<br>        charset_type            = zh_cn.utf-8<br>        ngram_len               = 0<br>        charset_dictpath    = /usr/local/mmseg3/etc/<br>}</p>
+<p>indexer<br>{<br>        mem_limit                               = 32M<br>}</p>
+<p>searchd<br>{<br>        port                                    = 9512<br>        log                                             = /usr/local/coreseek/var/log/searchd-message1.log<br>        query_log                               = /usr/local/coreseek/var/log/query-message1.log<br>        read_timeout                    = 5<br>        max_children                    = 30<br>        pid_file                                = /usr/local/coreseek/var/log/searchd-message1.pid<br>        max_matches                             = 1000<br>        seamless_rotate                 = 1<br>        preopen_indexes                 = 0<br>        unlink_old                              = 1<br>}</p>
+<p>现在可以尝试搜索</p>
+<p>更新索引</p>
+<p>/usr/local/coreseek/bin/indexer -c /usr/local/coreseek/etc/test.conf –all</p>
+<p>测试搜索</p>
+<p>/usr/local/coreseek/bin/search -c /usr/local/coreseek/etc/test.conf 你要搜索的字符串</p>
+<p>强行关闭</p>
+<p>killall -9 searchd</p>
+<p>启动</p>
+<p>/usr/local/coreseek/bin/searchd -c /usr/local/coreseek/etc/test.conf</p>
+<p>结果应该是类似：</p>
+<p>displaying matches:</p>
+<ol>
+<li>document=4, weight=5, uid=3046690<pre><code>id=4
+bid=3046730-4e842acdcf8be
+uid=3046690
+content=??????????
+valid=y
+createtime=1317286728
+</code></pre></li>
+</ol>
+<p>words:</p>
+<ol>
+<li>‘没有’: 683 documents, 700 hits</li>
+<li>‘听’: 124 documents, 134 hits</li>
+<li>‘过’: 722 documents, 741 hits</li>
+<li>‘，’: 9797 documents, 11936 hits</li>
+<li>‘过来’: 47 documents, 47 hits</li>
+<li>‘一下’: 404 documents, 404 hits<br>coreseek和php的交互</li>
+</ol>
+<p>总的来说和sphinx的交互几乎是一样的</p>
+<p>用的是pecl的sphinx模块的话，可能$result会返回false，使用getLastError()方法会返回</p>
+<p>client version is higher than daemon version</p>
+<p>这样的错误可以禁用pecl的sphinx模块，转而使用coreseek包中提供的sphinxapi.php<br>不然无法使用coreseek呢</p>
+<p>ls /usr/local/coreseek/api/*.php</p>
+<p>sphinxapi.php<br>test2.php<br>test_coreseek.php<br>test.php</p>
+<p>test*.php都是demo，可以作为参考</p>
+<p>自己写个test.php</p>
+<p>vim test.php</p>
+<p>include ‘./sphinxapi.php’;</p>
+<p>$sphinx-&gt;SetServer ( ‘192.168.1.168’, 9512 );<br>$sphinx-&gt;SetArrayResult ( true );</p>
+<p>$index = ‘message1’;</p>
+<p>$result = $sphinx-&gt;Query ( ‘搜索关键字’, “*” );</p>
+<p>if (!$result){<br>    print_r($sphinx-&gt;getLastError());<br>}</p>
+<p>print_r($result);</p>
+<p>其他的和sphinx一样</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2014/10/10/linux-sphinx的安装配置和中文分词包coreseek/" data-id="cjs01mkjf000t8kexi5o5lol8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/10/Java-Eclipse环境的配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java+Eclipse环境的配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/25/重启crontab服务/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">重启crontab服务 </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/">Can&#39;t connect to local MySQL server through socket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/18/Heritrix源码分析-各个类说明/">Heritrix源码分析--各个类说明 </a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/">Ubuntu设置与修改用户密码重置 (</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/07/纯js接收url中的get/">纯js接收url中的get</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

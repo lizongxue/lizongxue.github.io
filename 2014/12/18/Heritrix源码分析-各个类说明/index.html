@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Heritrix源码分析--各个类说明  | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Heritrix的类的确很繁琐,往往继承了一层又一层,最多的继承好像有7层。下面就一个包一个包的说明每个类的作用，由于里面Heritrix组件分 明，很多组件没用到的同时该组件的类我也没怎么接触,所以这里会忽略一部分，如  9.org.archive.crawler.fetcher 序号 类 说明 1 FetchDNS 获取DNS数据,如IP 2 FetchFTP 获取FTP数据 3 Fetc">
+<meta name="keywords" content="heritrix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heritrix源码分析--各个类说明 ">
+<meta property="og:url" content="https://lizongxue.github.io/2014/12/18/Heritrix源码分析-各个类说明/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="Heritrix的类的确很繁琐,往往继承了一层又一层,最多的继承好像有7层。下面就一个包一个包的说明每个类的作用，由于里面Heritrix组件分 明，很多组件没用到的同时该组件的类我也没怎么接触,所以这里会忽略一部分，如  9.org.archive.crawler.fetcher 序号 类 说明 1 FetchDNS 获取DNS数据,如IP 2 FetchFTP 获取FTP数据 3 Fetc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-11T07:53:35.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Heritrix源码分析--各个类说明 ">
+<meta name="twitter:description" content="Heritrix的类的确很繁琐,往往继承了一层又一层,最多的继承好像有7层。下面就一个包一个包的说明每个类的作用，由于里面Heritrix组件分 明，很多组件没用到的同时该组件的类我也没怎么接触,所以这里会忽略一部分，如  9.org.archive.crawler.fetcher 序号 类 说明 1 FetchDNS 获取DNS数据,如IP 2 FetchFTP 获取FTP数据 3 Fetc">
+  
+    <link rel="alternate" href="/atom.xml" title="李宗雪的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-Heritrix源码分析-各个类说明" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/18/Heritrix源码分析-各个类说明/" class="article-date">
+  <time datetime="2014-12-18T07:52:00.000Z" itemprop="datePublished">2014-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java爬虫/">java爬虫</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Heritrix源码分析--各个类说明 
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>  Heritrix的类的确很繁琐,往往继承了一层又一层,最多的继承好像有7层。下面就一个包一个包的说明每个类的作用，由于里面Heritrix组件分 明，很多组件没用到的同时该组件的类我也没怎么接触,所以这里会忽略一部分，如<a href="http://guoyunsky.iteye.com/admin/blogs/613249" title="Heritrix源码分析(一) 包说明" target="_blank" rel="noopener"></a></p>
+<p> 9.org.archive.crawler.fetcher</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>FetchDNS</p>
+<p>获取DNS数据,如IP</p>
+<p>2</p>
+<p>FetchFTP</p>
+<p>获取FTP数据</p>
+<p>3</p>
+<p>FetchHTTP</p>
+<p>获取HTTP数据</p>
+<p>4</p>
+<p>HeritrixHttpMethodRetryHandler</p>
+<p>HTTP重试处理器,重新去连接HTTP</p>
+<p>10.org.archive.crawler.framework</p>
+<p> 序号</p>
+<p> 类</p>
+<p> 说明</p>
+<p> 1</p>
+<p> AbstractTracker</p>
+<p> 统计器,统计抓取情况,父类，具体统计由子类实现</p>
+<p> 2</p>
+<p> AlertManager</p>
+<p> UI界面消息管理器,给用户显示爬虫相关消息，如一些异常情况</p>
+<p> 3</p>
+<p> Checkpointer</p>
+<p> 备份器,定时备份Heritrix相关数据,如日志、BDB文件等</p>
+<p> 4</p>
+<p> CrawlController</p>
+<p> 控制器,控制整个爬虫的启动、暂停、停止等,Heritrix的核心类</p>
+<p> 5</p>
+<p> CrawlScope</p>
+<p> URL范围管理器,如种子、哪些URL符合抓取哪些URL不符合抓取</p>
+<p> 6</p>
+<p> Filter</p>
+<p> 过滤器,决定哪些URL可以抓取哪些不可以,父类,具体由子类实现</p>
+<p> 7</p>
+<p> Frontier</p>
+<p> 调度器,对进来的URL进行调度，使其在接来下可以抓取</p>
+<p> 8</p>
+<p> Processor</p>
+<p> 处理器,一个URL由不同的处理器(组件)合作完成,这个为处理器父类,不同的组件有不同的实现</p>
+<p> 9</p>
+<p> ProcessorChain</p>
+<p> 处理器链,包含相同类型的处理器,如抽取URL的时候有从Html抽取的ExtractorHTML，从JavaScript抽取的ExtractorJs</p>
+<p> 10</p>
+<p> ProcessorChainList</p>
+<p> 处理器链集合,包含多个处理器链,每个URL都会有这样一个处理器集合,使得先从该集合中获取处理器链,然后再从处理器链中获取每个处理器,最后让每个处理器都做他们的处理，完成整个抓取</p>
+<p> 11</p>
+<p> Scoper</p>
+<p> 范围管理器,验证一个URL是否在用户配置(从order.xml中获取)的范围</p>
+<p> 12</p>
+<p> StatisticsTracking</p>
+<p> 跟踪统计器,主要统计抓取情况,如宽带占用、抓取多少URL、抓取速度等，贯穿整个爬虫的运行</p>
+<p> 13</p>
+<p> ToePool</p>
+<p> 线程池,用于管理爬虫线程</p>
+<p> 14</p>
+<p> ToeThread</p>
+<p> 爬虫线程,代表着一个抓取,Heritrix的核心类,贯穿整个爬虫的运行，接下来会重点分析</p>
+<p> 15</p>
+<p> WriterPoolProcessor</p>
+<p> 写处理器管理池,用于管理多个写处理器,可以在分布式中使用</p>
+<p>11.org.archive.crawler.frontier</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>AbstractFrontier</p>
+<p>调度器基本实现类,Heritrix最复杂的地方之一，接下来会重点分析</p>
+<p>2</p>
+<p>BdbFrontier</p>
+<p>BDB调度器,用BDB数据库去管理所有的URL,如保存哪些待抓取的URL，哪些已经抓取的URL,Heritrix最复杂的地方之一，接下来会重点分析</p>
+<p>3</p>
+<p>BdbMultipleWorkQueues</p>
+<p>管理着所有的队列,所有的队列数据保存在BDB数据库中.Heritrix最复杂的地方之一，接下来会重点分析</p>
+<p>4</p>
+<p>BdbWorkQueue</p>
+<p>抓取队列由BDB存储管理,相同classkey的URL为一个队列.classkey由用户配置决定，Heritrix默认是相同host的URL就为一个队列.Heritrix最复杂的地方之一，接下来会重点分析</p>
+<p>5</p>
+<p>FrontierJournal</p>
+<p>调度器记录管理,记录调度器的每一次运行情况,如插入URL，插入失败URL等</p>
+<p>6</p>
+<p>HostnameQueueAssignmentPolicy</p>
+<p>URL ClassKey获得策略,Heritrix的默认策略，通过域名来获得URL的class key。然后相同的classkey存放相同的队列</p>
+<p>7</p>
+<p>IPQueueAssignmentPolicy</p>
+<p>URL ClassKey获得策略,这个策略是通过IP来获得URL的class key</p>
+<p>8</p>
+<p>QueueAssignmentPolicy</p>
+<p>URL ClassKey获得策略，该类是抽象类,不同的策略由不同的子类实现，如根据域名、IP等，用户可以自己扩展</p>
+<p>9</p>
+<p>RecoveryJournal</p>
+<p>管理着/logs/recover.gz，该文件记录所有的URL抓取 情况，如抓取成功、失败都有不同的对应格式。该文件主要用于下次Heritrix恢复，如Heritrix异常中断重新启动Heritrix的话又会重新 抓取，而如果基于该文件启动的话则会避免这个问题，同时对于上次异常中断而来不及抓取的URL都会优先抓取</p>
+<p>10</p>
+<p>RecyclingSerialBinding</p>
+<p>给每个线程分配的数据输出流管理器,里面用ThreadLocal来管理每个线程的数据输出流，如此可以节省大量重复序列化</p>
+<p>11</p>
+<p>WorkQueue</p>
+<p>代表着一个队列,抽象类,会有不同的子类实现，如由BDB存储数据的BdbWorkQueue,Heritrix最复杂的地方之一，接下来会重点分析</p>
+<p>12</p>
+<p>WorkQueueFrontier</p>
+<p>队列调度器,管理着所有的队列，里面用不同的类型管理着不同的队列，如不在活动状态队列：Queue inactiveQueues.可以说是Heritrix中最为复杂最为关键的类,接下来会重重点分析</p>
+<p>  1.org.archive.crawler</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>CommandLineParser</p>
+<p>Heritrix也可以通过CMD命令进行操作,该类用于解析CMD命令</p>
+<p>2</p>
+<p>Heritrix</p>
+<p>Heritrix主类,可以通过该类启动Heritrix</p>
+<p>3</p>
+<p>SimpleHttpServer</p>
+<p>Heritrix Web服务器,可以通过Web管理Heritrix</p>
+<p>4</p>
+<p>WebappLifecycle</p>
+<p>封装Servlet,如此才可以通过Web启动Heritrix,里面装载Heritrix对象</p>
+<p>2.org.archive.crawler.admin</p>
+<p>序号</p>
+<p> 类</p>
+<p> 说明</p>
+<p>1</p>
+<p> CrawlJob</p>
+<p> Heritrix的核心类,代表着一个抓取任务,order.xml中大部分属性都围绕其配置,以后会着重说明</p>
+<p>2</p>
+<p> CrawlJobErrorHandler</p>
+<p> 维护者一个抓取任务(CrawlJob)的错误日志,UI中显示的JOB错误就来自于它</p>
+<p>3</p>
+<p> CrawlJobHandler</p>
+<p> 抓取任务处理器,Heritrix可以有多个抓取任务,都由它进行管理</p>
+<p>4</p>
+<p> InvalidJobFileException</p>
+<p> 抓取任务文件异常,意义不大</p>
+<p>5</p>
+<p> SeedRecord</p>
+<p> 记录种子的处理记录,如该种子重定向到哪个URL,在seeds.txt里面会有说明，该重定向值就来源于它</p>
+<p>6</p>
+<p> StatisticsSummary</p>
+<p> 统计摘要类，所用不多</p>
+<p>7</p>
+<p> StatisticsTracker</p>
+<p> Heritrix核心类，统计跟踪器,贯穿整个Heritrix的运行,如统计抓取了多少URL，以后会着重说明</p>
+<p>3.org.archive.crawler.admin.ui</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>CookieUtils</p>
+<p>Cookie工具类,主要用于访问Cookie</p>
+<p>2</p>
+<p>JobConfigureUtils</p>
+<p>CrawlJob配置管理工具类,当你通过Web Ui去配置一个CrawlJob时就会用到这个类</p>
+<p>3</p>
+<p>RootFilter</p>
+<p>不熟</p>
+<p>4.org.archive.crawler.datamodel</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>CandidateURI</p>
+<p>Heritrix的核心类,代表着一个URL,贯穿整个抓取,与CrawlURI的区别是它还没有通过调度器(Frontier)，只有通过了调度器的URL才可能去获取网页内容区下载等，以后会着重说明</p>
+<p>2</p>
+<p>CandidateURITest</p>
+<p>CandidateURI的测试类,比如可以用它获知如何创建CanditeURI</p>
+<p>3</p>
+<p>Checkpoint</p>
+<p>Heritrix会定期备份它的数据,如日志、正在获取的URL内容，都是在底层定时运行,当Heritrix异常中断可以通过它来恢复.也类似于各个数据库的Ckeckpoint</p>
+<p>4</p>
+<p>CoreAttributeConstants</p>
+<p>装载着Heritrix的基本属性变量名,一般是对应order.xml中的标签名</p>
+<p>5</p>
+<p>CrawlHost</p>
+<p>Heiritrix的核心类,代表着一个Host，里面主要包含域名、IP。由于Heritrix可以控制抓取速度，如对一个Host的抓取速度,这个类就代表着那个Host.以后会着重说明</p>
+<p>6</p>
+<p>CrawlOrder</p>
+<p>Heritrix的核心类,基本上对应着order.xml的各个属性值,除了各个组件的详细属性，以后会着重说明</p>
+<p>7</p>
+<p>CrawlServer</p>
+<p>Heritrix的核心类,也对应着一个Host,里面装载着一个Host的各种Heritrix数据,如统计信息、爬虫协议</p>
+<p>8</p>
+<p>CrawlSubstats</p>
+<p>抓取统计类,主要统计抓取Url的个数、成功的个数、下载的字节数等等</p>
+<p>9</p>
+<p>CrawlURI</p>
+<p>CandidateURI的子类,主要比CaidiateURI多了网页内容指纹、所属队列、组件处理器等</p>
+<p>10</p>
+<p> CredentialStore</p>
+<p> 凭证存储类，负责存储各种凭证,如登陆</p>
+<p>11</p>
+<p> FetchStatusCodes</p>
+<p> 抓取状态,有不同的属性代表不同的抓取状态,如DNS获取成功：S_DNS_SUCCESS</p>
+<p>12</p>
+<p> RobotsHonoringPolicy</p>
+<p> 爬虫协议,代表着不同的抓取策略</p>
+<p>13</p>
+<p> Robotstxt</p>
+<p> 爬虫协议,用于解析robots.txt</p>
+<p>14</p>
+<p> ServerCache</p>
+<p> 服务器缓存,主要缓存CrawlHost和CrawlServer</p>
+<p>15</p>
+<p>UriUniqFilter</p>
+<p>接口,用于过滤已经抓取过的URL</p>
+<p>5.org.archive.crawler.datamodel.credential</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>Credential</p>
+<p>凭证类,代表着一个凭证,从order.xml配置文件中获取数据</p>
+<p>2</p>
+<p>CredentialAvatar</p>
+<p>代表着一个具体的凭证</p>
+<p>3</p>
+<p>HtmlFormCredential</p>
+<p>Credential的子类,代表着提交HTML FORM表单时所需要的凭证</p>
+<p>4</p>
+<p>Rfc2617Credential</p>
+<p>Credential的子类,代表着RFC2617 HTTP 认证凭证</p>
+<p>6.org.archive.crawler.deciderules</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>AcceptDecideRule</p>
+<p>URL规则,表示接受</p>
+<p>2</p>
+<p>ConfiguredDecideRule</p>
+<p>URL规则，通过order.xml文件中的配置来决定是否拒绝(REJECT)或接受(ACCEPT)</p>
+<p>3</p>
+<p>DecideRule</p>
+<p>URL规则的父类,审核一个URL是否接受(ACCEPT)、拒绝(REJECT)或放弃(PASS),通过decisionFor(Object object)方法,该方法由其子类实现</p>
+<p>4</p>
+<p> DecidingScope</p>
+<p> 验证一个URL是否在范围来决定是否接受、拒绝或放弃</p>
+<p>5</p>
+<p> MatchesRegExpDecideRule</p>
+<p> 通过配置的正则表达式来决定URL是否可接受、拒绝或放弃</p>
+<p>6</p>
+<p> NotMatchesRegExpDecideRule</p>
+<p> MatchesRegExpDecideRule的子类,如果URL不匹配该正则则接受</p>
+<p>7</p>
+<p> PathologicalPathDecideRule</p>
+<p> 如果URL中相同目录名超过配置文件中的个数,则拒绝,如<a href="http://www.xxx.com/a/a/a/a/a" target="_blank" rel="noopener">http://www.xxx.com/a/a/a/a/a</a>其中a的个数超过一定限制则拒绝</p>
+<p>8</p>
+<p> PrerequisiteAcceptDecideRule</p>
+<p> 如果URL中有先决条件URL则接受,也就是该CandidateURI里的pathFromSeed属性里含有P,表示运行该URL之前有先要运行的URL</p>
+<p>9</p>
+<p> RejectDecideRule</p>
+<p> URL规则，表示拒绝</p>
+<p>10</p>
+<p> TooManyHopsDecideRule</p>
+<p> 如果超过配置文件中的约点数(max-hops),则拒绝</p>
+<p>7.org.archive.crawler.event</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>CrawlStatusListener</p>
+<p>爬虫监听器,如监听爬虫是否在运行，是否暂停等</p>
+<p>2</p>
+<p>CrawlURIDispositionListener</p>
+<p>URL监听器,如监听URL是否失败，是要要重新抓取等</p>
+<p>8.org.archive.crawler.extractor</p>
+<p>序号</p>
+<p>类</p>
+<p>说明</p>
+<p>1</p>
+<p>Extractor</p>
+<p>所有抽取类的父类,用于从一个URL中抽取出新的URL</p>
+<p>2</p>
+<p>ExtractorCSS</p>
+<p>从CSS中抽取出新的URL</p>
+<p>3</p>
+<p>ExtractorDOC</p>
+<p>从DOC中抽取出新的URL</p>
+<p>4</p>
+<p>ExtractorHTML</p>
+<p>从HTML中抽取出新的URL,Heritrix核心类</p>
+<p>5</p>
+<p>ExtractorHTTP</p>
+<p>从HTTP中抽取出新的URL</p>
+<p>6</p>
+<p>ExtractorJS</p>
+<p>从Javascript中抽取出新的URL</p>
+<p>7</p>
+<p>ExtractorPDF</p>
+<p>从PDF中抽取出新的URL</p>
+<p>8</p>
+<p>ExtractorSWF</p>
+<p>从SWF中抽取出新的URL</p>
+<p>9</p>
+<p>ExtractorXML</p>
+<p>从XML中抽取出新的URL</p>
+<p>10</p>
+<p>HTTPContentDigest</p>
+<p>网页内容文摘,实际上是通过MD5或SHA1算法将网页内容指纹化</p>
+<p>11</p>
+<p>Link</p>
+<p>链接,代表抽取出来的URL</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2014/12/18/Heritrix源码分析-各个类说明/" data-id="cjs01mkio00028kexq7oe3eg4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heritrix/">heritrix</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Can&#39;t connect to local MySQL server through socket
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ubuntu设置与修改用户密码重置 (</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/">Can&#39;t connect to local MySQL server through socket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/18/Heritrix源码分析-各个类说明/">Heritrix源码分析--各个类说明 </a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/">Ubuntu设置与修改用户密码重置 (</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/07/纯js接收url中的get/">纯js接收url中的get</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

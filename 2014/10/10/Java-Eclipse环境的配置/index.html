@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java+Eclipse环境的配置 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一步：Java+Eclipse环境的配置 首先上官网下个JDK和Eclipse（最好下载最新的版本）。  下载JDK1.6，官方下载地址:http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe  下载Eclipse，到eclip">
+<meta name="keywords" content="eclipse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java+Eclipse环境的配置">
+<meta property="og:url" content="https://lizongxue.github.io/2014/10/10/Java-Eclipse环境的配置/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="第一步：Java+Eclipse环境的配置 首先上官网下个JDK和Eclipse（最好下载最新的版本）。  下载JDK1.6，官方下载地址:http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe  下载Eclipse，到eclip">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-11T07:28:09.727Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java+Eclipse环境的配置">
+<meta name="twitter:description" content="第一步：Java+Eclipse环境的配置 首先上官网下个JDK和Eclipse（最好下载最新的版本）。  下载JDK1.6，官方下载地址:http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe  下载Eclipse，到eclip">
+  
+    <link rel="alternate" href="/atom.xml" title="李宗雪的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-Java-Eclipse环境的配置" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/10/Java-Eclipse环境的配置/" class="article-date">
+  <time datetime="2014-10-10T07:26:00.000Z" itemprop="datePublished">2014-10-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java+Eclipse环境的配置
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>第一步：Java+Eclipse环境的配置</p>
+<pre><code>首先上官网下个JDK和Eclipse（最好下载最新的版本）。
+
+下载JDK1.6，官方下载地址:http://www.java.net/download/jdk6/6u10/promoted/b32/binaries/jdk-6u10-rc2-bin-b32-windows-i586-p-12_sep_2008.exe
+
+下载Eclipse，到eclipse官方网站http://www.eclipse.org/downloads/下载，我下载的是Eclipse IDE for Java EE Developers,Windows 32 Bit
+</code></pre><p>配置过程：</p>
+<p>一、JDK安装</p>
+<pre><code>JDK安装过程非常的简单，直接运行程序，选择路径安装就行，我的安装路径是在D:\Java\jdk1.6.0_10
+</code></pre><p>二、配置环境变量。</p>
+<pre><code>总共配置3个环境变量JAVA_HOME CLASS_PATH PATH
+</code></pre><p>1.JAVA_HOME</p>
+<pre><code>右击“我的电脑”，选择“属性”，点击“高级系统设置&quot;选项卡，然后就可以新建环境变量了。（我选的是在系统变量下设置，与用户变量的区别是在系统变量下设置的不同的用户登录都可以使用，而用户变量只是在该用户下使用有效。）
+
+点击新建环境变量 变量名为JAVA_HOME,变量值为JDK安装目录，我的为D:\Java\jdk1.6.0_10
+</code></pre><p>2 .CLASS_PATH</p>
+<pre><code>新建环境变量 CLASS_PATH 变量值为 .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
+
+一定要注意是 .;表示当前路径下。
+</code></pre><p>3.PATH</p>
+<pre><code>不用新建，找到PATH添加路径;%JAVA_HOME%\jre\bin;%JAVA_HOME%\bin
+
+按照以上步骤就配置完成了。
+</code></pre><p>三、最后你可以在cmd下运行java和javac 以及java -version命令测试安装是否成功，如果出现有java的相关信息的话就正确了。</p>
+<pre><code>然后你就可以在Eclipse下新建工程，编写一个java程序（HelloWorld），测试环境的准确性。我相信如果是安装上面的安装的话，应该没有什么问题。
+</code></pre><p>补充说明：</p>
+<pre><code>path 可以使得系统在任何路径下识别java命令，CLASS_PATH使得java在加载类的路径，只有在CLASS_PATH路径下才能被加载。
+</code></pre><p>cmd下设置环境变量的方法</p>
+<pre><code>在“开始→运行”框中输入“cmd”后按“确定”按钮，出现命令运行窗口。在命令提示符下输入“set”即可查看环境变量设置。要查看具体某个环境变量的设置，比如要查看path环境变量的设置，可以输入“set path”。要创建一个环境变量，比如要创建一个名为aa的，值为“c:”的环境变量，可以输入“set aa=c:”命令。而要删除一个环境变量，比如要删除aa环境变量，则可输入“set aa=”命令（注意=后面不能有空格）。如何更改一个环境变量的设置呢？更改环境变量有两种情况：一是追加方式，即在不改变环境变量现有设置的情况下，增加变量的值，比如要给环境变量aa增加一个值为“D:”的设置，可以输入“set aa=%path%;D:”。另一种是完全修改方式，对于这种方式，我们可以采用直接创建一个环境变量的方法来实现。
+</code></pre><p>第二步：Heritrix在Eclipse中的搭建原文：<a href="http://liuli3163.iteye.com/blog/890136" target="_blank" rel="noopener">http://liuli3163.iteye.com/blog/890136</a></p>
+<p>１、在官方网站<a href="http://sourceforge.net/projects/archive-crawler/files/archive-crawler" target="_blank" rel="noopener">http://sourceforge.net/projects/archive-crawler/files/archive-crawler</a> (heritrix 1.x)/1.14.3/ ，下载heritrix-1.14.3-src.zip和heritrix-1.14.3.zip两个压缩包，并解压，以后分别简称SRC包和ZIP包；</p>
+<p>２、在Eclipse下新建Java项目，取名Heritrix；(如我打开 Eclipse的工作区在D:\eclipse\workplace下,当我建了项目Heritrix后,我就可以找到D:\eclipse \workplace\Heritrix文件夹.其中包含两个工程属性文件.classpath 和.project和两个文件夹src和bin，接着把bin文件夹删掉）</p>
+<p>３、复制SRC包下面src/java文件夹下org、com、st三个文件夹到项目根目录下的src文件夹下(即D:\eclipse\workplace\Heritrix\src)；</p>
+<p>４、复制SRC包下src下resources和conf文件夹到项目根目录(D:\eclipse\workplace\Heritrix)；<br>５、复制SRC包下lib文件夹到项目根目录(即D:\eclipse\workplace\Heritrix)；<br>６、复制ZIP包下webapps文件夹到项目根目录(D:\eclipse\workplace\Heritrix)；<br>    做好了以上，在Eclipse中Heritrix项目右击刷新一下，就可以看到刚才所复制的包了。</p>
+<p>７、在Eclipse中修改项目conf下heritrix.properties文件<br>    heritrix.version = @VERSION@ 改为heritrix.version = 1.14.3<br>    heritrix.cmdline.admin = 改为 heritrix.cmdline.admin = admin:xxm (这里是用户名与密码,可任读者设定.)<br>    heritrix.cmdline.port = 改为 heritrix.cmdline.port = 8888 (注默认是8080的如果你已占用了这个端口号的话,要设另一个才行，由于8080端口已经被占用，我修改为8888）</p>
+<p>８、在项目Heritrix上右键选择构建路径-&gt;配置构建路径-&gt;库选项卡-&gt;添加Jar，将lib目录下的所有.jar文件选中，点击完成！</p>
+<p>9.将conf文件夹下改好的heritrix.properties 文件复制一份到src文件夹（这一步不知道是不是必须的，我是在别人博客说这样好些）</p>
+<p>10.设置eclipse，把 Windows-Preferences-Java-Complicer-Errors/Warnings 里面的Deprecated and restricted API中的Forbidden references(access rules)选为Warning。这是因为eclipse默认把这些受访问限制的API设成了ERROR，不做修改的话，后面会出现Access restriction: The type FileURLConnection is not accessible due to restriction on required library D:\java\lib\rt.jar错误信息</p>
+<p>11.在Eclipse下启动Heritrix，找到项目src下的org.archive.crawler包下的主类Heritrix.java鼠标右键-&gt;运行。等成功看到heritrix版本信息后就说明你运行成功了。</p>
+<p>12.将项目conf文件夹下的modules文件夹剪切到bin目录下，否则后面可能在配置抓取种子时，在Modules选项出现没有下拉框给你选。</p>
+<p>13.重新启动Heritrix，打开浏览器，输入网址<a href="http://127.0.0.1:8888/，便可看到登陆界面，用上面设置好的账号密码登陆，便可开始你的Heritrix之旅。" target="_blank" rel="noopener">http://127.0.0.1:8888/，便可看到登陆界面，用上面设置好的账号密码登陆，便可开始你的Heritrix之旅。</a></p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2014/10/10/Java-Eclipse环境的配置/" data-id="cjs01mkiu00068kext6sigmds" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eclipse/">eclipse</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/12/Multiple-markers-at-this-line-Override的解决方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Multiple markers at this line @Override的解决方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/10/10/linux-sphinx的安装配置和中文分词包coreseek/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">linux sphinx的安装配置和中文分词包coreseek</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/">Can&#39;t connect to local MySQL server through socket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/18/Heritrix源码分析-各个类说明/">Heritrix源码分析--各个类说明 </a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/">Ubuntu设置与修改用户密码重置 (</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/07/纯js接收url中的get/">纯js接收url中的get</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

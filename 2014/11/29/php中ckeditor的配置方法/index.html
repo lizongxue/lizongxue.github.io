@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>php中ckeditor的配置方法 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="phpupload服务器flashfunctionjavascriptckeditor 编辑器php正确配置方法  下载安装 CKEditor:  http://ckeditor.com/ 解压下载到的CKEditor放到网站的路径中即可  下载安装 CKFinder:  http://ckfinder.com/download 解压下载到的CKFinder放到与CKEditor同一目录中即可">
+<meta name="keywords" content="ckeditor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php中ckeditor的配置方法">
+<meta property="og:url" content="https://lizongxue.github.io/2014/11/29/php中ckeditor的配置方法/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="phpupload服务器flashfunctionjavascriptckeditor 编辑器php正确配置方法  下载安装 CKEditor:  http://ckeditor.com/ 解压下载到的CKEditor放到网站的路径中即可  下载安装 CKFinder:  http://ckfinder.com/download 解压下载到的CKFinder放到与CKEditor同一目录中即可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-11T07:47:16.808Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php中ckeditor的配置方法">
+<meta name="twitter:description" content="phpupload服务器flashfunctionjavascriptckeditor 编辑器php正确配置方法  下载安装 CKEditor:  http://ckeditor.com/ 解压下载到的CKEditor放到网站的路径中即可  下载安装 CKFinder:  http://ckfinder.com/download 解压下载到的CKFinder放到与CKEditor同一目录中即可">
+  
+    <link rel="alternate" href="/atom.xml" title="李宗雪的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-php中ckeditor的配置方法" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/29/php中ckeditor的配置方法/" class="article-date">
+  <time datetime="2014-11-29T04:46:00.000Z" itemprop="datePublished">2014-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      php中ckeditor的配置方法
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>phpupload服务器flashfunctionjavascript<br>ckeditor 编辑器php正确配置方法</p>
+<ol>
+<li>下载安装 CKEditor:</li>
+</ol>
+<p><a href="http://ckeditor.com/" target="_blank" rel="noopener">http://ckeditor.com/</a></p>
+<p>解压下载到的CKEditor放到网站的路径中即可</p>
+<ol start="2">
+<li>下载安装 CKFinder:</li>
+</ol>
+<p><a href="http://ckfinder.com/download" target="_blank" rel="noopener">http://ckfinder.com/download</a></p>
+<p>解压下载到的CKFinder放到与CKEditor同一目录中即可</p>
+<ol start="3">
+<li>在网页中使用 CKEditor 和 CKFinder:</li>
+</ol>
+<p>CKEditor 实际是替换一个 textarea 标签，所以把textarea放到一个form中，当提交到php服务器端，使用$_GET[‘xxx’] 或者 $_POST[‘xxx’] 取得编辑好的数据。注意，因为 CKEditor 要替换 textarea，所以相应的javascript 代码”CKEDITOR.replace(xxxxxx)” 要放在 textarea 的后面。</p>
+<p>最简单的方法，直接新建一个test.html文件（和ckeditor、ckfinder处于同一级目录）使用下面的例子修改一下即可。在浏览器里浏览test.html就可以在网页中看到 CKEditor 了，兴奋吧。</p>
+<p>CKEditor Demo</p>
+<p>   submit</p>
+<p>   // 启用 CKEitor 的上传功能，使用了 CKFinder 插件</p>
+<p>   CKEDITOR.replace( ‘editor1’, {</p>
+<p>   filebrowserBrowseUrl : ‘ckfinder/ckfinder.html’,</p>
+<p>   filebrowserImageBrowseUrl : ‘ckfinder/ckfinder.html?Type=Images’,</p>
+<p>   filebrowserFlashBrowseUrl : ‘ckfinder/ckfinder.html?Type=Flash’,</p>
+<p>   filebrowserUploadUrl : ‘ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Files’,</p>
+<p>   filebrowserImageUploadUrl : ‘ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Images’,</p>
+<p>   filebrowserFlashUploadUrl : ‘ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Flash’</p>
+<p>   });</p>
+<ol start="4">
+<li>配置CKFinder进行上传图片，Flash等。</li>
+</ol>
+<p>到这里，点击 “Image” 按钮，在弹出的窗口中的 “Upload” 标签中已经看到上传按钮了，但是在上传文件时失败。因为CKFinder还没有配置好。需要创建上传文件的目录和修改 ckfinder/config.php 里的三个地方:</p>
+<p>a. 创建保存上传文件的目录，如upload</p>
+<p>（把upload文件夹也放在和ckeditor、ckfinder处于同一级目录，三个目录都位于项目目录下）</p>
+<p>其路径为 /upload/</p>
+<p>[For Linux: 把其权限设置为php server可读写，最简单的是 chmod 777 upload 这样php server才有权限往里面保存文件.]</p>
+<p>b. 找到配置文件（ckfinder/config.php）第32行，把 function CheckAuthentication() { return false; }</p>
+<p>修改成 function CheckAuthentication() { return true; }</p>
+<p>c. 找到第63行，把 $baseUrl 的值改成保存上传文件存目录的URL，</p>
+<p>如 $baseUrl = ‘/项目名/upload/‘;（这里的地址要从项目目录开始的绝对路径，确定上传目录已经存在）</p>
+<p>d. 找到第82行，删除 $baseDir = resolveUrl($baseUrl); 修改 $baseDir 为上传文件目录的绝对路径，（不能删除，否则不能上传）（本地测试的时候要从磁盘的跟目录下开始，即C:/或者D:/的直接目录）</p>
+<p>如$baseDir = ‘/Apache2/htdocs/ck/upload/‘; （Apache2是D:/盘下的直接目录）</p>
+<p>这是因为resolveUrl($baseUrl)函数不能正常工作。</p>
+<p>至此，可以使用 CKEditor 和 CKFinder 上传文件了。</p>
+<p>对上面这个小例子中服务器端的b.php代码：</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2014/11/29/php中ckeditor的配置方法/" data-id="cjs01mkjg000v8kexac1l62lu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ckeditor/">ckeditor</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/07/纯js接收url中的get/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          纯js接收url中的get
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/21/dede标签大全/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">dede标签大全</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/">Can&#39;t connect to local MySQL server through socket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/18/Heritrix源码分析-各个类说明/">Heritrix源码分析--各个类说明 </a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/">Ubuntu设置与修改用户密码重置 (</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/07/纯js接收url中的get/">纯js接收url中的get</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

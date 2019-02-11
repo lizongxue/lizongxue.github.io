@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>linux 时间sh 的熟练运用  | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在linux环境中，不管是编程还是其他维护，时间是必不可少的，也经常会用到时间的运算，熟练运用date命令来表示自己想要表示的时间，肯定可以给自己的工作带来诸多方便。 1．命令格式：   date [参数]… [+格式] 2．命令功能： date 可以用来显示或设定系统的日期与时间。 3．命令参数： 必要参数: %H 小时(以00-23来表示)。  %I 小时(以01-12来表示)。  %K 小时">
+<meta name="keywords" content="shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 时间sh 的熟练运用 ">
+<meta property="og:url" content="https://lizongxue.github.io/2014/11/14/linux-时间sh-的熟练运用/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="在linux环境中，不管是编程还是其他维护，时间是必不可少的，也经常会用到时间的运算，熟练运用date命令来表示自己想要表示的时间，肯定可以给自己的工作带来诸多方便。 1．命令格式：   date [参数]… [+格式] 2．命令功能： date 可以用来显示或设定系统的日期与时间。 3．命令参数： 必要参数: %H 小时(以00-23来表示)。  %I 小时(以01-12来表示)。  %K 小时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-11T07:44:29.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 时间sh 的熟练运用 ">
+<meta name="twitter:description" content="在linux环境中，不管是编程还是其他维护，时间是必不可少的，也经常会用到时间的运算，熟练运用date命令来表示自己想要表示的时间，肯定可以给自己的工作带来诸多方便。 1．命令格式：   date [参数]… [+格式] 2．命令功能： date 可以用来显示或设定系统的日期与时间。 3．命令参数： 必要参数: %H 小时(以00-23来表示)。  %I 小时(以01-12来表示)。  %K 小时">
+  
+    <link rel="alternate" href="/atom.xml" title="李宗雪的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-linux-时间sh-的熟练运用" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/14/linux-时间sh-的熟练运用/" class="article-date">
+  <time datetime="2014-11-14T07:42:00.000Z" itemprop="datePublished">2014-11-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux 时间sh 的熟练运用 
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>在linux环境中，不管是编程还是其他维护，时间是必不可少的，也经常会用到时间的运算，熟练运用date命令来表示自己想要表示的时间，肯定可以给自己的工作带来诸多方便。</p>
+<p>1．命令格式：</p>
+<p>  date [参数]… [+格式]</p>
+<p>2．命令功能：</p>
+<p>date 可以用来显示或设定系统的日期与时间。</p>
+<p>3．命令参数：</p>
+<p>必要参数:</p>
+<p>%H 小时(以00-23来表示)。 </p>
+<p>%I 小时(以01-12来表示)。 </p>
+<p>%K 小时(以0-23来表示)。 </p>
+<p>%l 小时(以0-12来表示)。 </p>
+<p>%M 分钟(以00-59来表示)。 </p>
+<p>%P AM或PM。 </p>
+<p>%r 时间(含时分秒，小时以12小时AM/PM来表示)。 </p>
+<p>%s 总秒数。起算时间为1970-01-01 00:00:00 UTC。 </p>
+<p>%S 秒(以本地的惯用法来表示)。 </p>
+<p>%T 时间(含时分秒，小时以24小时制来表示)。 </p>
+<p>%X 时间(以本地的惯用法来表示)。 </p>
+<p>%Z 市区。 </p>
+<p>%a 星期的缩写。 </p>
+<p>%A 星期的完整名称。 </p>
+<p>%b 月份英文名的缩写。 </p>
+<p>%B 月份的完整英文名称。 </p>
+<p>%c 日期与时间。只输入date指令也会显示同样的结果。 </p>
+<p>%d 日期(以01-31来表示)。 </p>
+<p>%D 日期(含年月日)。 </p>
+<p>%j 该年中的第几天。 </p>
+<p>%m 月份(以01-12来表示)。 </p>
+<p>%U 该年中的周数。 </p>
+<p>%w 该周的天数，0代表周日，1代表周一，异词类推。 </p>
+<p>%x 日期(以本地的惯用法来表示)。 </p>
+<p>%y 年份(以00-99来表示)。 </p>
+<p>%Y 年份(以四位数来表示)。 </p>
+<p>%n 在显示时，插入新的一行。 </p>
+<p>%t 在显示时，插入tab。 </p>
+<p>MM 月份(必要) </p>
+<p>DD 日期(必要) </p>
+<p>hh 小时(必要) </p>
+<p>mm 分钟(必要)</p>
+<p>ss 秒(选择性) </p>
+<p>选择参数:</p>
+<p>-d&lt;字符串&gt; 　显示字符串所指的日期与时间。字符串前后必须加上双引号。 </p>
+<p>-s&lt;字符串&gt; 　根据字符串来设置日期与时间。字符串前后必须加上双引号。 </p>
+<p>-u 　显示GMT。 </p>
+<p>–help 　在线帮助。 </p>
+<p>–version 　显示版本信息 </p>
+<p>4．使用说明：</p>
+<p>1.在显示方面，使用者可以设定欲显示的格式，格式设定为一个加号后接数个标记，其中可用的标记列表如下: % :  打印出 %：</p>
+<p>%n : 下一行</p>
+<p>%t : 跳格</p>
+<p>%H : 小时(00..23)</p>
+<p>%I : 小时(01..12)</p>
+<p>%k : 小时(0..23)</p>
+<p>%l : 小时(1..12)</p>
+<p>%M : 分钟(00..59)</p>
+<p>%p : 显示本地 AM 或 PM</p>
+<p>%r : 直接显示时间 (12 小时制，格式为 hh:mm:ss [AP]M)</p>
+<p>%s : 从 1970 年 1 月 1 日 00:00:00 UTC 到目前为止的秒数</p>
+<p>%S : 秒(00..61)</p>
+<p>%T : 直接显示时间 (24 小时制)</p>
+<p>%X : 相当于 %H:%M:%S</p>
+<p>%Z : 显示时区 %a : 星期几 (Sun..Sat)</p>
+<p>%A : 星期几 (Sunday..Saturday)</p>
+<p>%b : 月份 (Jan..Dec)</p>
+<p>%B : 月份 (January..December)</p>
+<p>%c : 直接显示日期与时间</p>
+<p>%d : 日 (01..31)</p>
+<p>%D : 直接显示日期 (mm/dd/yy)</p>
+<p>%h : 同 %b</p>
+<p>%j : 一年中的第几天 (001..366)</p>
+<p>%m : 月份 (01..12)</p>
+<p>%U : 一年中的第几周 (00..53) (以 Sunday 为一周的第一天的情形)</p>
+<p>%w : 一周中的第几天 (0..6)</p>
+<p>%W : 一年中的第几周 (00..53) (以 Monday 为一周的第一天的情形)</p>
+<p>%x : 直接显示日期 (mm/dd/yy)</p>
+<p>%y : 年份的最后两位数字 (00.99)</p>
+<p>%Y : 完整年份 (0000..9999)</p>
+<p>2.在设定时间方面：</p>
+<p>date -s //设置当前时间，只有root权限才能设置，其他只能查看。</p>
+<p>date -s 20080523 //设置成20080523，这样会把具体时间设置成空00:00:00</p>
+<p>date -s 01:01:01 //设置具体时间，不会对日期做更改</p>
+<p>date -s “01:01:01 2008-05-23″ //这样可以设置全部时间</p>
+<p>date -s “01:01:01 20080523″ //这样可以设置全部时间</p>
+<p>date -s “2008-05-23 01:01:01″ //这样可以设置全部时间</p>
+<p>date -s “20080523 01:01:01″ //这样可以设置全部时间</p>
+<p>3.加减：</p>
+<p>date +%Y%m%d         //显示前天年月日</p>
+<p>date +%Y%m%d –date=”+1 day”  //显示前一天的日期</p>
+<p>date +%Y%m%d –date=”-1 day”  //显示后一天的日期</p>
+<p>date +%Y%m%d –date=”-1 month”  //显示上一月的日期</p>
+<p>date +%Y%m%d –date=”+1 month”  //显示下一月的日期</p>
+<p>date +%Y%m%d –date=”-1 year”  //显示前一年的日期</p>
+<p>date +%Y%m%d –date=”+1 year”  //显示下一年的日期</p>
+<p>5．使用实例：</p>
+<p>实例1：显示当前时间</p>
+<p>命令：</p>
+<p>date</p>
+<p>date ‘+%c’</p>
+<p>date ‘+%D’</p>
+<p>date ‘+%x’</p>
+<p>date ‘+%T’</p>
+<p>date ‘+%X’</p>
+<p>输出：</p>
+<p>[root@localhost ~]# date</p>
+<p>2012年 12月 08日 星期六 08:31:35 CST</p>
+<p>[root@localhost ~]# date ‘+%c’</p>
+<p>2012年12月08日 星期六 08时34分44秒</p>
+<p>[root@localhost ~]# date ‘+%D’</p>
+<p>12/08/12[root@localhost ~]# date ‘+%x’</p>
+<p>2012年12月08日</p>
+<p>[root@localhost ~]# date ‘+%T’</p>
+<p>08:35:36[root@localhost ~]# date ‘+%X’</p>
+<p>08时35分54秒</p>
+<p>[root@localhost ~]#</p>
+<p>说明：</p>
+<p>实例2：显示日期和设定时间</p>
+<p>命令：</p>
+<p>date –date 08:42:00</p>
+<p>输出：</p>
+<p>[root@localhost ~]# date ‘+%c’</p>
+<p>2012年12月08日 星期六 08时41分37秒</p>
+<p>[root@localhost ~]# date –date 08:42:00</p>
+<p>2012年 12月 08日 星期六 08:42:00 CST</p>
+<p>[root@localhost ~]# date ‘+%c’ –date 08:45:00</p>
+<p>2012年12月08日 星期六 08时45分00秒</p>
+<p>[root@localhost ~]#</p>
+<p>说明：</p>
+<p>实例3：date -d参数使用</p>
+<p>命令：</p>
+<p>输出：</p>
+<p>[root@localhost ~]# date -d “nov 22”</p>
+<p>2012年 11月 22日 星期四 00:00:00 CST</p>
+<p>[root@localhost ~]# date -d ‘2 weeks’</p>
+<p>2012年 12月 22日 星期六 08:50:21 CST</p>
+<p>[root@localhost ~]# date -d ‘next monday’</p>
+<p>2012年 12月 10日 星期一 00:00:00 CST</p>
+<p>[root@localhost ~]#  date -d next-day +%Y%m%d</p>
+<p>20121209[root@localhost ~]# date -d tomorrow +%Y%m%d</p>
+<p>20121209[root@localhost ~]# date -d last-day +%Y%m%d</p>
+<p>20121207[root@localhost ~]# date -d yesterday +%Y%m%d</p>
+<p>20121207[root@localhost ~]# date -d last-month +%Y%m</p>
+<p>201211[root@localhost ~]# date -d next-month +%Y%m</p>
+<p>201301[root@localhost ~]# date -d ‘30 days ago’ </p>
+<p>2012年 11月 08日 星期四 08:51:37 CST</p>
+<p>[root@localhost ~]# date -d ‘-100 days’ </p>
+<p>2012年 08月 30日 星期四 08:52:03 CST</p>
+<p>[root@localhost ~]#  date -d ‘dec 14 -2 weeks’</p>
+<p>2012年 11月 30日 星期五 00:00:00 CST</p>
+<p>[root@localhost ~]# date -d ‘50 days’</p>
+<p>2013年 01月 27日 星期日 08:52:27 CST</p>
+<p>说明：</p>
+<p>date 命 令的另一个扩展是 -d 选项，该选项非常有用。使用这个功能强大的选项，通过将日期作为引号括起来的参数提供，您可以快速地查明一个特定的日期。 -d 选项还可以告诉您，相对于当前日期若干天的究竟是哪一天，从现在开始的若干天或若干星期以后，或者以前（过去）。通过将这个相对偏移使用引号括起 来，作为 -d 选项的参数，就可以完成这项任务。</p>
+<p>具体说明如下：</p>
+<p>date -d “nov 22”  今年的 11 月 22 日是星期三</p>
+<p>date -d ‘2 weeks’ 2周后的日期</p>
+<p>date -d ‘next monday’ (下周一的日期)</p>
+<p>date -d next-day +%Y%m%d（明天的日期）或者：date -d tomorrow +%Y%m%d</p>
+<p>date -d last-day +%Y%m%d(昨天的日期) 或者：date -d yesterday +%Y%m%d</p>
+<p>date -d last-month +%Y%m(上个月是几月)</p>
+<p>date -d next-month +%Y%m(下个月是几月)</p>
+<p>使用 ago 指令，您可以得到过去的日期：</p>
+<p>date -d ‘30 days ago’ （30天前的日期）</p>
+<p>使用负数以得到相反的日期：</p>
+<p>date -d ‘dec 14 -2 weeks’ （相对:dec 14这个日期的两周前的日期）</p>
+<p>date -d ‘-100 days’ (100天以前的日期)</p>
+<p>date -d ‘50 days’(50天后的日期)</p>
+<p>实例4：显示月份和日数</p>
+<p>命令：</p>
+<p>date  ‘+%B %d’</p>
+<p>输出：</p>
+<p>[root@localhost ~]# date  ‘+%B %d’ </p>
+<p>十二月 08[root@localhost ~]#</p>
+<p>说明：</p>
+<p>实例5：显示时间后跳行，再显示目前日期 </p>
+<p>命令：</p>
+<p>date ‘+%T%n%D’</p>
+<hr>
+<p>-f 存在且是普通文件<br>-d 存在且是目录<br>-s 存在且字节数大于0<br>-r 存在且可读<br>-w 存在且可写<br>-x 存在且可执行<br>如：test -d “mydoc”</p>
+<h2 id="判断mydoc是否是目录"><a href="#判断mydoc是否是目录" class="headerlink" title="判断mydoc是否是目录"></a>判断mydoc是否是目录</h2><p>cp /etc/my.conf  &gt;/dev/null  2&gt;&amp;1<br>p/dev/null 空设备<br>n此句命令的结果是：<br>1.cp命令没有目标文件,应该输出错误。<br>2.2&gt;&amp;1表示错误重定向指向标准输出。<br>3.&gt;/dev/null又使标准输出重定向到空，就是不要输出信息<br>p即：一个错误的命令执行，什么功能都不实现，且没有任何信息或错误提示输出。</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2014/11/14/linux-时间sh-的熟练运用/" data-id="cjs01mkji000z8kexm9p9x230" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/21/dede标签大全/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          dede标签大全
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/10/12/Multiple-markers-at-this-line-Override的解决方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Multiple markers at this line @Override的解决方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/">Can&#39;t connect to local MySQL server through socket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/18/Heritrix源码分析-各个类说明/">Heritrix源码分析--各个类说明 </a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/">Ubuntu设置与修改用户密码重置 (</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/07/纯js接收url中的get/">纯js接收url中的get</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

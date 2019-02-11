@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>开源爬虫: Heritrix 3.1 Windows 上安装/使用 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目前 Heritrix 的最新版本是 3.1.0（2011-10-21 发布） http://blog.sina.com.cn/s/blog_5f54f0be0101hcy8.html 讲了 1.14.4 版本的安装和使用http://blog.sina.com.cn/s/blog_5f54f0be0101hcyd.html讲了如何扩展 1.14.4 版本其中的模块本文讲如何安装和使用 Herit">
+<meta name="keywords" content="heritrix3.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源爬虫: Heritrix 3.1 Windows 上安装&#x2F;使用">
+<meta property="og:url" content="https://lizongxue.github.io/2014/09/13/开源爬虫-Heritrix-3-1-Windows-上安装-使用/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="目前 Heritrix 的最新版本是 3.1.0（2011-10-21 发布） http://blog.sina.com.cn/s/blog_5f54f0be0101hcy8.html 讲了 1.14.4 版本的安装和使用http://blog.sina.com.cn/s/blog_5f54f0be0101hcyd.html讲了如何扩展 1.14.4 版本其中的模块本文讲如何安装和使用 Herit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://s6.sinaimg.cn/bmiddle/001KeVzgty6FijjoFxzd5&690">
+<meta property="og:image" content="http://s8.sinaimg.cn/bmiddle/001KeVzgty6Fijr16TBd7&690">
+<meta property="og:image" content="http://s13.sinaimg.cn/mw690/001KeVzgty6FijzBJda8c&690">
+<meta property="og:image" content="http://s11.sinaimg.cn/mw690/001KeVzgty6FikqSZ18aa&690">
+<meta property="og:image" content="http://s1.sinaimg.cn/mw690/001KeVzgty6FikseVri50&690">
+<meta property="og:image" content="http://s7.sinaimg.cn/mw690/001KeVzgty6FikuocNEd6&690">
+<meta property="og:image" content="http://s1.sinaimg.cn/mw690/001KeVzggy6FijSLbY440&690">
+<meta property="og:image" content="http://s11.sinaimg.cn/mw690/001KeVzgty6FqnSNlr4da&690">
+<meta property="og:image" content="http://s10.sinaimg.cn/mw690/001KeVzgty6FqnXPorn39&690">
+<meta property="og:updated_time" content="2019-02-11T07:30:16.215Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开源爬虫: Heritrix 3.1 Windows 上安装&#x2F;使用">
+<meta name="twitter:description" content="目前 Heritrix 的最新版本是 3.1.0（2011-10-21 发布） http://blog.sina.com.cn/s/blog_5f54f0be0101hcy8.html 讲了 1.14.4 版本的安装和使用http://blog.sina.com.cn/s/blog_5f54f0be0101hcyd.html讲了如何扩展 1.14.4 版本其中的模块本文讲如何安装和使用 Herit">
+<meta name="twitter:image" content="http://s6.sinaimg.cn/bmiddle/001KeVzgty6FijjoFxzd5&690">
+  
+    <link rel="alternate" href="/atom.xml" title="李宗雪的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-开源爬虫-Heritrix-3-1-Windows-上安装-使用" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/13/开源爬虫-Heritrix-3-1-Windows-上安装-使用/" class="article-date">
+  <time datetime="2014-09-13T07:18:00.000Z" itemprop="datePublished">2014-09-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java爬虫/">java爬虫</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源爬虫: Heritrix 3.1 Windows 上安装/使用
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>目前 Heritrix 的最新版本是 3.1.0（2011-10-21 发布）</p>
+<p><a href="http://blog.sina.com.cn/s/blog_5f54f0be0101hcy8.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_5f54f0be0101hcy8.html</a></p>
+<div>讲了 1.14.4 版本的安装和使用</div><br><div><br></div><br><div><a href="http://blog.sina.com.cn/s/blog_5f54f0be0101hcyd.html" target="_blank">http://blog.sina.com.cn/s/blog_5f54f0be0101hcyd.html</a></div><br><div>讲了如何扩展 1.14.4 版本其中的模块</div><br><div><br></div><br><div>本文讲如何安装和使用 Heritrix 最新的 3.1.0 版</div><br><div>下载：</div><br><div><a href="http://sourceforge.net/projects/archive-crawler/files/heritrix3/3.1.0/" target="_blank">http://sourceforge.net/projects/archive-crawler/files/heritrix3/3.1.0/</a></div><br><div><br></div><br><div><br><div><b><font color="#FF0000">在 Eclipse 中的配置</font></b></div><br><div>首先在 Eclipse 中新建 Java 工程<br>MyHeritrix3。然后利用下载的源代码包根据以下步骤来配置这个工程。</div><br><div><br></div><br><div><b>1. 导入类库</b></div><br><div>Heritrix 所用到的工具类库都在 heritrix-3.1.0-dist.zip 的 lib 目录下，需要将其导入<br>MyHeritrix3 工程。</div><br><div>1）将 heritrix-3.1.0-dist 下的 lib 文件夹拷贝到 MyHeritrix3 项目根目录；</div><br><div>2）在 MyHeritrix3 工程上右键单击选择“Build Path -&gt; Configure Build<br>Path …”，然后选择 Library 选项卡，单击“Add JARs …”。</div><br><div>3）在弹出的“JAR Selection”对话框中选择 MyHeritrix3 工程 lib 文件夹下所有的 jar<br>文件，然后点击 OK 按钮。</div><br><div><br></div><br><div><b>2. 拷贝源代码</b></div><br><div>将 heritrix-3.1.0enginesrcmainjava<br>添加到Eclipse的src目录，以及：heritrix-3.1.0commonssrcmainjava 目录 和<br>heritrix-3.1.0modulessrcmainjava 目录。</div><br><div><br>这样你就可以删除heritrix-commons-3.1.0.jar，heritrix-engine-3.1.0.jar，heritrix-modules-3.1.0.jar三个包的引用，直接使用源代码运行。</div><br></div><br><div><br></div><br><div><b>3、运行Heritrix 3.1</b></div><br><div>在 MyHeritrix 工程上右键单击选择“Run As -&gt; Run Configurations”，选择<br>Java Application, 确保 Main 选项卡中的 Project 和 Main class 选项内容正确，其中的<br>Name 参数可以设置为任何方便识别的名字。</div><br><div>在 argument 项中设置启动参数-a admin:admin（输入启动账号），如下图：</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FijjoFxzd5" target="_blank"><img src="http://s6.sinaimg.cn/bmiddle/001KeVzgty6FijjoFxzd5&amp;690" real_src="http://s6.sinaimg.cn/bmiddle/001KeVzgty6FijjoFxzd5&amp;690" name="image_operate_52021388041608744" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用"></a><br><br><br></div><br><div><br><div>然后运行Heritrix.java，如果一切正常, eclipse 运行结果如图:</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6Fijr16TBd7" target="_blank"><img src="http://s8.sinaimg.cn/bmiddle/001KeVzgty6Fijr16TBd7&amp;690" real_src="http://s8.sinaimg.cn/bmiddle/001KeVzgty6Fijr16TBd7&amp;690" name="image_operate_20581388041686132" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用"></a><br><br><br></div><br><div>可以看到程序已经在 8443 端口运行.</div><br><div>你可以通过：<a href="https://localhost:8443" target="_blank" rel="noopener">https://localhost:8443</a> 访问Heritrix 3.1的管理端。要注意是 https ,<br>不是 http</div><br><div>打开页面后会提示输入用户名和密码,输入 admin, admin</div><br><div><br></div><br><div><b>4、建立和配置抓取任务</b></div><br><div>登录管理控制台（用户名admin密码admin），在管理界面首页找到如下图这个位置：</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FijzBJda8c" target="_blank"><img src="http://s13.sinaimg.cn/mw690/001KeVzgty6FijzBJda8c&amp;690" real_src="http://s13.sinaimg.cn/mw690/001KeVzgty6FijzBJda8c&amp;690" name="image_operate_68251388041741661" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" width="490" height="80"></a><br><br>输入一个名称（如 test）,然后点击“Create”按钮。</div><br><div><br></div><br><div><br>这时候根据默认模版生成了一个抓取任务，但还不能抓取任何东西，我们需要通过配置文件的修改告诉服务器，我们要抓取什么。</div><br><div><br></div><br><div>在管理控制台的Job Directories中选择要配置的job（下图中myjob）</div><br></div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzggy6FijCkQAlfd" target="_blank"></a><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FikqSZ18aa" target="_blank"><img src="http://s11.sinaimg.cn/mw690/001KeVzgty6FikqSZ18aa&amp;690" real_src="http://s11.sinaimg.cn/mw690/001KeVzgty6FikqSZ18aa&amp;690" name="image_operate_96321388042419111" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用"></a><br><br><br><br>点击 myjob, 进入myjob的管理界面，如下图：</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzggy6FijJl7tgfa" target="_blank"></a><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FikseVri50" target="_blank"><img src="http://s1.sinaimg.cn/mw690/001KeVzgty6FikseVri50&amp;690" real_src="http://s1.sinaimg.cn/mw690/001KeVzgty6FikseVri50&amp;690" name="image_operate_95691388042449310" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" width="455" height="190"></a><br><br>点击 edit 按钮，开始编辑配置文件，配置需要修改的地方如下图所示，先从简单的做起：</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FikuocNEd6" target="_blank"><img src="http://s7.sinaimg.cn/mw690/001KeVzgty6FikuocNEd6&amp;690" real_src="http://s7.sinaimg.cn/mw690/001KeVzgty6FikuocNEd6&amp;690" name="image_operate_82671388042455239" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" width="490" height="444"></a><br><br><br></div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzggy6FijOPEej3f" target="_blank"></a></div><br><div>配置1和3的配置内容是一样的，operatorContactUrl写成 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a>,<br>jobName和description随便写点东西即可。</div><br><div><br><div><br>配置2则是配置搜索种子网站的列表，我这里先写了一个<a href="http://www.sina.com.cn,先抓取新浪网站试试。" target="_blank" rel="noopener">http://www.sina.com.cn,先抓取新浪网站试试。</a></div><br><div>点击最上面的“Save changes”保存所有的配置文件。</div><br><div>这三个地方配置好就可以运行这个抓取任务试试了。</div><br><div>这时候需要执行如下操作（回到myjob的配置界面），让任务运行起来：</div><br><div><br></div><br><div><font color="#FF0000">1）</font>点击“build”编译当前的配置。</div><br><div><font color="#FF0000">2）</font>点击“launch”按钮运行当前任务至挂起状态，如果job已经运行，则先点击“teardown”按钮；</div><br><div><font color="#FF0000">3）</font>这时任务处于挂起状态，点击“unpause”即立即启动任务。</div><br><div>如果系统正常运行，会有如下类似提示信息：</div><br></div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzggy6FijSLbY440" target="_blank"><img src="http://s1.sinaimg.cn/mw690/001KeVzggy6FijSLbY440&amp;690" real_src="http://s1.sinaimg.cn/mw690/001KeVzggy6FijSLbY440&amp;690" name="image_operate_66871388042005903" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" width="490" height="244"></a><br><br><br></div><br><div><br><div><br>在项目的jobstest20131226062239wa<wbr>rcs目录下有一个逐步增大的文件，这就是抓取下来的网页。</div><br><div>&nbsp;<wbr></div><br><div><br>如果要看到每个抓取的页面，可以将配置文件的warcWriter这个bean的class改为org.archive.modules.writer.MirrorWriterProcessor，这样就下载的网页是以镜像文件的形式保存在，一般存放在项目根目录下的mirror目录下。</div><br><div><br></div><br><div>这种方式是较刻板的.因为它是直接将warcWriter bean 的 class<br>改了，但里面的属性还是之前类的。如果把属性的注释打开，会报错，因为 MirrorWriterProcessor 没有那些<br>property, 所以最好是自己再定义一个 bean. 然后在配置中引用它：</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FqnSNlr4da" target="_blank"><img src="http://s11.sinaimg.cn/mw690/001KeVzgty6FqnSNlr4da&amp;690" real_src="http://s11.sinaimg.cn/mw690/001KeVzgty6FqnSNlr4da&amp;690" name="image_operate_27451388478839395" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" width="490" height="264"></a><br><br><br></div><br><div>定义上面三个 bean. 然后再在&nbsp;<wbr>dispositionProcessors 中将<br>processors 的引用改成 mirrorWriter:</div><br><div><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=94b3ca450102v2ni&amp;url=http://album.sina.com.cn/pic/001KeVzgty6FqnXPorn39" target="_blank"><img src="http://s10.sinaimg.cn/mw690/001KeVzgty6FqnXPorn39&amp;690" real_src="http://s10.sinaimg.cn/mw690/001KeVzgty6FqnXPorn39&amp;690" name="image_operate_37711388478846465" alt="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" title="[转载]开源爬虫:&nbsp;&lt;wbr&gt;Heritrix&nbsp;&lt;wbr&gt;3.1&nbsp;&lt;wbr&gt;Windows&nbsp;&lt;wbr&gt;上安装/使用" action-data="http%3A%2F%2Fs10.sinaimg.cn%2Fmw690%2F001KeVzgty6FqnXPorn39%26690" action-type="show-slide" width="490" height="257"></a><br><br><br></div><br></div>
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2014/09/13/开源爬虫-Heritrix-3-1-Windows-上安装-使用/" data-id="cjs01mkjl00148kexjhdfxxz5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/25/重启crontab服务/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          重启crontab服务 
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/02/js中的replace说明/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js中的replace说明</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/Can-t-connect-to-local-MySQL-server-through-socket/">Can&#39;t connect to local MySQL server through socket</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/18/Heritrix源码分析-各个类说明/">Heritrix源码分析--各个类说明 </a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/12/Ubuntu设置与修改用户密码重置/">Ubuntu设置与修改用户密码重置 (</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/07/纯js接收url中的get/">纯js接收url中的get</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
