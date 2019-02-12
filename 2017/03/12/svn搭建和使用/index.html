@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>svn搭建和使用 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1，安装SVN服务端直接用apt-get或yum安装subversion即可（当然也可以自己去官方下载安装） [plain] view plain copy print?  sudo apt-get install subversion    2，创建版本库[plain] view plain copy print?  svnadmin create /home/myrepos    //这里的文">
+<meta name="keywords" content="svn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svn搭建和使用">
+<meta property="og:url" content="https://lizongxue.github.io/2017/03/12/svn搭建和使用/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="1，安装SVN服务端直接用apt-get或yum安装subversion即可（当然也可以自己去官方下载安装） [plain] view plain copy print?  sudo apt-get install subversion    2，创建版本库[plain] view plain copy print?  svnadmin create /home/myrepos    //这里的文">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:updated_time" content="2019-02-12T07:50:11.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="svn搭建和使用">
+<meta name="twitter:description" content="1，安装SVN服务端直接用apt-get或yum安装subversion即可（当然也可以自己去官方下载安装） [plain] view plain copy print?  sudo apt-get install subversion    2，创建版本库[plain] view plain copy print?  svnadmin create /home/myrepos    //这里的文">
+<meta name="twitter:image" content="https://code.csdn.net/assets/CODE_ico.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-svn搭建和使用" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/svn搭建和使用/" class="article-date">
+  <time datetime="2017-03-12T07:49:00.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      svn搭建和使用
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <h1 id="1，安装SVN服务端"><a href="#1，安装SVN服务端" class="headerlink" title="1，安装SVN服务端"></a>1，安装SVN服务端</h1><p>直接用apt-get或yum安装subversion即可（当然也可以自己去官方下载安装）</p>
+<p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>sudo apt-get install subversion  </li>
+</ol>
+<h2 id="2，创建版本库"><a href="#2，创建版本库" class="headerlink" title="2，创建版本库"></a>2，创建版本库</h2><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>svnadmin create /home/myrepos    //这里的文件目录自己随便设置  </li>
+</ol>
+<h2 id="3，配置svnserve"><a href="#3，配置svnserve" class="headerlink" title="3，配置svnserve"></a>3，配置svnserve</h2><p>上述版本库/home/myrepos建立后在文件夹下会生成conf文件夹，进入/home/myrepos/conf下面会有下面3个文件</p>
+<p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>authz passwd svnserve.conf  </li>
+</ol>
+<p>我们依次修改</p>
+<h3 id="3-1，svnserve-conf修改以下几个部分："><a href="#3-1，svnserve-conf修改以下几个部分：" class="headerlink" title="3.1，svnserve.conf修改以下几个部分："></a>3.1，svnserve.conf修改以下几个部分：</h3><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>anon-access = read  </li>
+<li>auth-access = write  </li>
+<li>password-db = passwd  </li>
+<li>authz-db = authz  </li>
+</ol>
+<h3 id="3-2，passwd修改为："><a href="#3-2，passwd修改为：" class="headerlink" title="3.2，passwd修改为："></a>3.2，passwd修改为：</h3><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>[users]  </li>
+<li>username = password    //这里的username和password自己设置  </li>
+</ol>
+<h3 id="3-3，authz最后加上以下两行-这两行解决了-SVN客户端解决authorization-failed问题"><a href="#3-3，authz最后加上以下两行-这两行解决了-SVN客户端解决authorization-failed问题" class="headerlink" title="3.3，authz最后加上以下两行(这两行解决了 SVN客户端解决authorization failed问题)"></a>3.3，authz最后加上以下两行(这两行解决了 SVN客户端解决authorization failed问题)</h3><p><strong>[sql]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>[\]  </li>
+<li><ul>
+<li>= rw    </li>
+</ul>
+</li>
+</ol>
+<h2 id="4，启动svnserve即可："><a href="#4，启动svnserve即可：" class="headerlink" title="4，启动svnserve即可："></a>4，启动svnserve即可：</h2><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>svnserve -d -r /home/myrepos/  </li>
+</ol>
+<h1 id="5，客户端使用："><a href="#5，客户端使用：" class="headerlink" title="5，客户端使用："></a>5，客户端使用：</h1><p>客户端用svn或者windows下的TortoiseSVN客户端</p>
+<h3 id="5-1，从服务端checkout版本库（在当前目录下）"><a href="#5-1，从服务端checkout版本库（在当前目录下）" class="headerlink" title="5.1，从服务端checkout版本库（在当前目录下）"></a>5.1，从服务端checkout版本库（在当前目录下）</h3><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>svn checkout svn://服务器的ip地址/  </li>
+</ol>
+<h3 id="5-2，自己增加一些文件，或者把之前的东西（如下面三个文件夹）拷贝到当前目录下，想让svn帮你管理"><a href="#5-2，自己增加一些文件，或者把之前的东西（如下面三个文件夹）拷贝到当前目录下，想让svn帮你管理" class="headerlink" title="5.2，自己增加一些文件，或者把之前的东西（如下面三个文件夹）拷贝到当前目录下，想让svn帮你管理"></a>5.2，自己增加一些文件，或者把之前的东西（如下面三个文件夹）拷贝到当前目录下，想让svn帮你管理</h3><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>code project document  </li>
+</ol>
+<h3 id="5-3，假设我把上述三个文件夹放到当前svn的文件夹下想让svn管理，然后我要做的是添加到svn版本库里："><a href="#5-3，假设我把上述三个文件夹放到当前svn的文件夹下想让svn管理，然后我要做的是添加到svn版本库里：" class="headerlink" title="5.3，假设我把上述三个文件夹放到当前svn的文件夹下想让svn管理，然后我要做的是添加到svn版本库里："></a>5.3，假设我把上述三个文件夹放到当前svn的文件夹下想让svn管理，然后我要做的是添加到svn版本库里：</h3><p><strong>[html]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>svn add code project document    //或者直接用svn add *  </li>
+</ol>
+<h3 id="5-4，最后提交到svn服务器"><a href="#5-4，最后提交到svn服务器" class="headerlink" title="5.4，最后提交到svn服务器"></a>5.4，最后提交到svn服务器</h3><p><strong>[plain]</strong> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="view plain" target="_blank" rel="noopener">view plain</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="copy" target="_blank" rel="noopener">copy</a> <a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="print" target="_blank" rel="noopener">print</a><a href="http://blog.csdn.net/a649518776/article/details/39433883#" title="?" target="_blank" rel="noopener">?</a><a href="https://code.csdn.net/snippets/472185" title="在CODE上查看代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" title="svn搭建和使用"></a><a href="https://code.csdn.net/snippets/472185/fork" title="派生到我的代码片" target="_blank" rel="noopener"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" title="svn搭建和使用"></a></p>
+<ol>
+<li>svn commit -m ‘import three directories’  </li>
+</ol>
+<p>一定要对当前版本写注释。</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2017/03/12/svn搭建和使用/" data-id="cjs1h70mp0032g4exstd9bqv6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/23/刚开始建立java-web项目遇到的奇葩问题汇总/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          刚开始建立java web项目遇到的奇葩问题汇总
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/07/linux-用户组，用户，增删改/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">linux 用户组，用户，增删改</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/solr/">solr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kill/">kill</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux常用命令/">linux常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vagrant/">vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/kill/" style="font-size: 10px;">kill</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux常用命令/" style="font-size: 10px;">linux常用命令</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 20px;">svn</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2099/03/">March 2099</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/charles抓包工具的中文乱码解决方法/">charles抓包工具的中文乱码解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/sssss/">忘记 iOS 的访问限制密码，如何找回或重设？</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/08/安装Scrapy-报错/">安装Scrapy   报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/coreseek搜索中文为0-怎么解决-看我原创/">coreseek搜索中文为0 怎么解决 看我原创</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

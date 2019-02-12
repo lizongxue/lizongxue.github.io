@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>【技术】在windows下进行linux开发：利用Vagrant+virtualbox | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1，介绍Vagrant  我们做web开发的时候经常要安装各种本地测试环境，比如apache,php,mysql,redis等等。出于个人使用习惯，可能我们还是比较 习惯用windows。虽然说在windows下搭建各种开发环境是可行的，各大开发环境都有windows版本。然而在windows下配置有时候会显 得繁琐，并且还会导致开发环境（windows）和生产环境（lunix）不一致。能不能在w">
+<meta name="keywords" content="vagrant">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【技术】在windows下进行linux开发：利用Vagrant+virtualbox">
+<meta property="og:url" content="https://lizongxue.github.io/2016/11/09/【技术】在windows下进行linux开发：利用Vagrant-virtualbox/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="1，介绍Vagrant  我们做web开发的时候经常要安装各种本地测试环境，比如apache,php,mysql,redis等等。出于个人使用习惯，可能我们还是比较 习惯用windows。虽然说在windows下搭建各种开发环境是可行的，各大开发环境都有windows版本。然而在windows下配置有时候会显 得繁琐，并且还会导致开发环境（windows）和生产环境（lunix）不一致。能不能在w">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-12T07:41:27.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【技术】在windows下进行linux开发：利用Vagrant+virtualbox">
+<meta name="twitter:description" content="1，介绍Vagrant  我们做web开发的时候经常要安装各种本地测试环境，比如apache,php,mysql,redis等等。出于个人使用习惯，可能我们还是比较 习惯用windows。虽然说在windows下搭建各种开发环境是可行的，各大开发环境都有windows版本。然而在windows下配置有时候会显 得繁琐，并且还会导致开发环境（windows）和生产环境（lunix）不一致。能不能在w">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-【技术】在windows下进行linux开发：利用Vagrant-virtualbox" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/09/【技术】在windows下进行linux开发：利用Vagrant-virtualbox/" class="article-date">
+  <time datetime="2016-11-09T07:40:00.000Z" itemprop="datePublished">2016-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【技术】在windows下进行linux开发：利用Vagrant+virtualbox
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <h3 id="1，介绍Vagrant"><a href="#1，介绍Vagrant" class="headerlink" title="1，介绍Vagrant"></a>1，介绍Vagrant</h3><p>  我们做web开发的时候经常要安装各种本地测试环境，比如apache,php,mysql,redis等等。出于个人使用习惯，可能我们还是比较 习惯用windows。虽然说在windows下搭建各种开发环境是可行的，各大开发环境都有windows版本。然而在windows下配置有时候会显 得繁琐，并且还会导致开发环境（windows）和生产环境（lunix）不一致。<br>能不能在windows下也像linux那样开发？也许你想到了，用虚拟机。用虚拟机装个linux系统就好了。装完linux系统就设置共享目录，设置网络端口映射，等等。好像也有那么点繁琐。<br>还有，假如我们是一个团队进行开发，那么每个人的电脑上都要装个虚拟机+ linux系统+各种运行环境。手动设置麻烦不说，大家的开发环境不太一致（可能你装了apcahe我装了nginx等），也是头疼。能不能把各种设置都自动化，并且保持整个团队的开发环境一致呢？<br>Vagrant就是为了解决这个问题而生的。它使用开源 VirtualBox 作为虚拟化支持，可以轻松的跨平台部署。</p>
+<h3 id="2，下载"><a href="#2，下载" class="headerlink" title="2，下载"></a>2，下载</h3><p>下载VirtualBox：<a href="http://download.virtualbox.org/virtualbox/4.3.28/VirtualBox-4.3.28-100309-Win.exe" target="_blank" rel="noopener">http://download.virtualbox.org/virtualbox/4.3.28/VirtualBox-4.3.28-100309-Win.exe</a><br>上面给出的是4.3.28版本的下载链接。要下载其他版本请访问官网<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads</a></p>
+<p>下载Vagrant：<br><a href="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi" target="_blank" rel="noopener">https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi</a><br>上面给出的是1.7.2版本的下载链接。要下载其他版本请访问官网<br><a href="http://www.vagrantup.com/downloads.html" target="_blank" rel="noopener">http://www.vagrantup.com/downloads.html</a></p>
+<p>下载虚拟镜像：<br><a href="https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.0.0/centos-6.6-x86_64.box" target="_blank" rel="noopener">https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.0.0/centos-6.6-x86_64.box</a></p>
+<p>上面给出的是centos-6.6镜像下载链接，要下载其他镜像请访问官网<br><a href="http://www.vagrantbox.es/" target="_blank" rel="noopener">http://www.vagrantbox.es/</a></p>
+<h3 id="3，安装"><a href="#3，安装" class="headerlink" title="3，安装"></a>3，安装</h3><p>下载好上面的软件包后，先安装VirtualBox,然后安装Vagrant。都是双击即可安装的，所以没什么好介绍。下面介绍下怎么把镜像导入。<br>先新建一个工作目录<br>比如我新建了D:\VagrantWork\centos-6.6-x86_64\<br>打开cmd命令提示符，进入新目录，以我上面的目录为例，输入</p>
+<p>1</p>
+<p>2</p>
+<p><code>D:</code></p>
+<p><code>cd D:\VagrantWork\centos-6.6-x86_64\</code></p>
+<p>然后输入命令初始化</p>
+<p>1</p>
+<p><code>vagrant init centos6.6</code></p>
+<p>把下载的centos-6.6-x86_64.box复制到本目录D:\VagrantWork\centos-6.6-x86_64\下，执行</p>
+<p>1</p>
+<p><code>vagrant box add centos6.6 centos-6.6-x86_64.box</code></p>
+<p>检查是否导入成功</p>
+<p>1</p>
+<p><code>vagrant box list</code></p>
+<h3 id="4，配置"><a href="#4，配置" class="headerlink" title="4，配置"></a>4，配置</h3><p>用文本编辑器打开D:\VagrantWork\centos-6.6-x86_64\目录下的Vagrantfile文件便可以进行一些常用配置。<br>下面列举出几个常用的配置。要用到其他配置请访问官网文档或者百度谷歌一下。<br>1，端口映射</p>
+<p>1</p>
+<p><code>config.vm.network :forwarded_port, guest: 80, host: 8080</code></p>
+<p>把上面这句代码前面的#号去掉。它表示映射本机的8080端口到虚拟机的80端口<br>2，如果需要自己自由的访问虚拟机，但是别人不需要访问虚拟机，可以使用private_network，并为虚拟机设置IP。</p>
+<p>1</p>
+<p><code>config.vm.network :private_network, ip: &quot;192.168.33.10&quot;</code></p>
+<p>把上面这句代码前面的#号去掉即可<br>3，目录映射</p>
+<p>1</p>
+<p><code>config.vm.synced_folder &quot;../data&quot;, &quot;/var/www&quot;</code></p>
+<p>如果启用上面的命令，表示把本机的data目录共享到虚拟机里的/var/www目录</p>
+<h3 id="5，启动"><a href="#5，启动" class="headerlink" title="5，启动"></a>5，启动</h3><p>进入目录D:\VagrantWork\centos-6.6-x86_64\后执行命令</p>
+<p>1</p>
+<p><code>vagrant up</code></p>
+<p>虚拟机启动之后则可以通过 vagrant ssh 联入虚拟机进行进一步的环境配置，或者软件安装相关的工作，在Windows系统下，并不能直接通过 vagrant ssh 连到虚拟机，需要使用 Putty，Xshell 等第三方工具进行连接。连接地址127.0.0.1，端口2222。登录的帐号root的密码为 vagrant</p>
+<h3 id="6，导出"><a href="#6，导出" class="headerlink" title="6，导出"></a>6，导出</h3><p>在cmd里进行工作目录后，执行下面命令</p>
+<p>1</p>
+<p><code>vagrant package</code></p>
+<p>完成后会在当前目录就会生成package.box，之后新建虚拟机则可使用这个box。如果事先在你的虚拟机里建立好了各种开发环境，那么你直接把这个box给你的团队其他成员安装，这样就可以省去一台台电脑部署的时间，还可以保持开发环境一致。很方便有木有。</p>
+<h3 id="7，其他命令"><a href="#7，其他命令" class="headerlink" title="7，其他命令"></a>7，其他命令</h3><p>下面列举出一些常用的cmd操作命令<br>vagrant up （启动虚拟机）<br>vagrant halt （关闭虚拟机——对应就是关机）<br>vagrant suspend （暂停虚拟机——只是暂停，虚拟机内存等信息将以状态文件的方式保存在本地，可以执行恢复操作后继续使用）<br>vagrant resume （恢复虚拟机 —— 与前面的暂停相对应）<br>vagrant box remove centos6.6 （移除box，其中centos6.6是box名）<br>vagrant destroy （删除虚拟机，删除后在当前虚拟机所做进行的除开Vagrantfile中的配置都不会保留）</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2016/11/09/【技术】在windows下进行linux开发：利用Vagrant-virtualbox/" data-id="cjs1h70my003eg4exnyvzatu0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vagrant/">vagrant</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/29/vagrant安装镜像以及vagrant目录映射失败/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vagrant安装镜像以及vagrant目录映射失败
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/22/Redis-数据备份与恢复/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redis 数据备份与恢复</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/solr/">solr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kill/">kill</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux常用命令/">linux常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vagrant/">vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/kill/" style="font-size: 10px;">kill</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux常用命令/" style="font-size: 10px;">linux常用命令</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 20px;">svn</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2099/03/">March 2099</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/charles抓包工具的中文乱码解决方法/">charles抓包工具的中文乱码解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/sssss/">忘记 iOS 的访问限制密码，如何找回或重设？</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/08/安装Scrapy-报错/">安装Scrapy   报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/coreseek搜索中文为0-怎么解决-看我原创/">coreseek搜索中文为0 怎么解决 看我原创</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Firefox伪造请求头 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：http://justcoding.iteye.com/blog/2086233 Firefox黑客插件：http://blog.csdn[.NET](http://lib.csdn.net/base/dotnet “.NET知识库”)/stilling2006/article/details/7753592 大概有两年没有去过chinaz的论坛了，昨天上去逛了逛。正好看到一个朋友在问百">
+<meta name="keywords" content="目前这里只分享php|python|html的技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Firefox伪造请求头">
+<meta property="og:url" content="https://lizongxue.github.io/2017/01/08/Firefox伪造请求头/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="原文地址：http://justcoding.iteye.com/blog/2086233 Firefox黑客插件：http://blog.csdn[.NET](http://lib.csdn.net/base/dotnet “.NET知识库”)/stilling2006/article/details/7753592 大概有两年没有去过chinaz的论坛了，昨天上去逛了逛。正好看到一个朋友在问百">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-12T07:47:08.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Firefox伪造请求头">
+<meta name="twitter:description" content="原文地址：http://justcoding.iteye.com/blog/2086233 Firefox黑客插件：http://blog.csdn[.NET](http://lib.csdn.net/base/dotnet “.NET知识库”)/stilling2006/article/details/7753592 大概有两年没有去过chinaz的论坛了，昨天上去逛了逛。正好看到一个朋友在问百">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-Firefox伪造请求头" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/08/Firefox伪造请求头/" class="article-date">
+  <time datetime="2017-01-08T07:46:00.000Z" itemprop="datePublished">2017-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂谈/">杂谈</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Firefox伪造请求头
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>原文地址：<a href="http://justcoding.iteye.com/blog/2086233" target="_blank" rel="noopener">http://justcoding.iteye.com/blog/2086233</a></p>
+<p>Firefox黑客插件：<a href="http://blog.csdn[.NET]" target="_blank" rel="noopener">http://blog.csdn[.NET]</a>(<a href="http://lib.csdn.net/base/dotnet" target="_blank" rel="noopener">http://lib.csdn.net/base/dotnet</a> “.NET知识库”)/stilling2006/article/details/7753592</p>
+<p>大概有两年没有去过chinaz的论坛了，昨天上去逛了逛。正好看到一个朋友在问百度是如何判断是不是手机登录的。有几个热心朋友回答的是js，我把百度首页的js看了下，没有找到一丝的手持设备判断的信息，我也就回答了两句，这里的判断应该属于程序部分的处理，不属于<a href="http://www.niumowang.org/" title="前端开发" target="_blank" rel="noopener">前端</a>的范畴，是靠判断请求头信息（HTTP_USER_AGENT）进行判断的。不知道这位朋友能不能明白。</p>
+<p>为了验证这个结论，这里我用firefox伪造请求头信息（主要是HTTP_USER_AGENT部分），来进行模拟手机访问百度网站。具体操作流程看下面。</p>
+<hr>
+<h4 id="如何用firefox伪造user-agent来模拟手机访问网站"><a href="#如何用firefox伪造user-agent来模拟手机访问网站" class="headerlink" title="如何用firefox伪造user agent来模拟手机访问网站"></a>如何用firefox伪造user agent来模拟手机访问网站</h4><ol>
+<li><p>首先需要安装三个Firefox插件：wmlbrowser、XHTML Mobile Profile、User Agent Switcher；（我称它们为“伪娘三贱客”）</p>
+<p>先来一睹“伪娘三贱客”的尊容</p>
+</li>
+<li><p>安 装好后需要设置 User Agent Switcher ，点击菜单 工具 → Default User Agent → User Agent Switcher → Options → New→New User Agent… ，Description是你给它的一个称呼，比如小三，凹凸曼等等。关键的部分是User Agent里面的东西（这里是请求头主要的信息，程序会根据这个请求头进行判断你是否是手持设备），这里就需要把我们想要模拟的手持设备的信息填入了。  </p>
+</li>
+</ol>
+<ol start="3">
+<li>添加好后一路确定，回到浏览器界面。工具 →default user agent  →选择你自己添加的那个 →在浏览器地址输入你想要访问的地址即可。<br>十分大方这里你会看到几个选项，Default User Agent (浏览器默认的信息)，Internet Explorer （可以模拟ie6,7,8的头信息），Search Robots （模拟谷歌，雅虎，msn的蜘蛛），iphone 3.0 （默认存在的一个），图片中的小三是我自己添加的一个（伪造Android的头信息）</li>
+<li>下面列出几个比较常见手机的User Agent：(如果想要查询更多的手机user agent 信息的话，<a href="http://blog.163.com/xo_zhang/blog/static/4848383520108244136328/" title="各种手机的user agent信息" target="_blank" rel="noopener">去看这里</a>，<a href="http://www.zytrax.com/tech/web/mobile_ids.html" title="各种手机的user agent" target="_blank" rel="noopener">还有这里</a>)<br>iPhone3：<br>Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16<br>Android：<br>Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1<br>诺基亚N95：<br>Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaN95/30.0.015; Profile MIDP-2.0 Configuration/CLDC-1.1) AppleWebKit/413 (KHTML, like Gecko) Safari/413<br>诺基亚N97：<br>Mozilla/5.0 (SymbianOS/9.4; Series60/5.0 NokiaN97-1/20.0.019; Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) BrowserNG/7.1.18124</li>
+</ol>
+<hr>
+<h4 id="firefox伪造头信息，访问网站的效果"><a href="#firefox伪造头信息，访问网站的效果" class="headerlink" title="firefox伪造头信息，访问网站的效果"></a>firefox伪造头信息，访问网站的效果</h4><p>ok，当上面的几步你都熟悉了的话，就可以输入你想要造访的网站了。下面看我用我的“小三”拜访百度首页的情况（小三伪造的<a href="http://lib.csdn.net/base/android" title="Android知识库" target="_blank" rel="noopener">安卓</a>的头）</p>
+<p>Now，看到了吧。百度首页变了吧。而且智能的判断出了这个采用安卓系统访问！你可以换成iphone试试，框中的部分是不同的！</p>
+<p>这里你也许会发现用浏览器访问的百度页面好大啊，其实这里是它页面css的问题，为了实现自适应屏幕宽度。如果想要得到好的浏览效果的话，可以参考<strong><a href="http://www.niumowang.org/tools/opera-mobile-emulator/" title="如何在电脑上模拟手机登陆网站（Opera Mobile Emulator）" target="_blank" rel="noopener">如何在电脑上模拟手机登陆网站（Opera Mobile Emulator）</a></strong></p>
+<hr>
+<h4 id="查看firefox发送的头信息，进一步验证我的结论"><a href="#查看firefox发送的头信息，进一步验证我的结论" class="headerlink" title="查看firefox发送的头信息，进一步验证我的结论"></a>查看firefox发送的头信息，进一步验证我的结论</h4><p>我们用<a href="http://www.niumowang.org/tag/firebug/" title="firebug" target="_blank" rel="noopener">firebug</a>查看一下请求头信息User-Agent的内容，发现就是我修改的安卓的user agent。而百度首页返回了不同的页面，ok结论成立。百度是通过服务端进行手持设备的判断，不过怎样判断的，代码是什么，这里我就不甚了了了。</p>
+<p>下面的这段可以复制进去，然后保存成xml文件。选择KIW-AL10</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2017/01/08/Firefox伪造请求头/" data-id="cjs1h70k90001g4exw8fir0pu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/07/linux-用户组，用户，增删改/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          linux 用户组，用户，增删改
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/12/svn-添加/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">svn 添加 </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/solr/">solr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kill/">kill</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux常用命令/">linux常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vagrant/">vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/kill/" style="font-size: 10px;">kill</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux常用命令/" style="font-size: 10px;">linux常用命令</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 20px;">svn</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2099/03/">March 2099</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/charles抓包工具的中文乱码解决方法/">charles抓包工具的中文乱码解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/sssss/">忘记 iOS 的访问限制密码，如何找回或重设？</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/08/安装Scrapy-报错/">安装Scrapy   报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/coreseek搜索中文为0-怎么解决-看我原创/">coreseek搜索中文为0 怎么解决 看我原创</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

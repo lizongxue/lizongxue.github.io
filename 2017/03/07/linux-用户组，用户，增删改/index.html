@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>linux 用户组，用户，增删改 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0、建立用户   操作步骤： useradd -d /home/applog/USFM -m usfm passwd usfm 输入密码usfms1234 chown -R usfm:usfm /home/applog/USFM chmod 760 /home/applog/USFM 建立用户usfm，设置主目录为/home/applog/USFM，设置密码为usfms1234 1、建用户：add">
+<meta name="keywords" content="目前这里只分享php|python|html的技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 用户组，用户，增删改">
+<meta property="og:url" content="https://lizongxue.github.io/2017/03/07/linux-用户组，用户，增删改/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="0、建立用户   操作步骤： useradd -d /home/applog/USFM -m usfm passwd usfm 输入密码usfms1234 chown -R usfm:usfm /home/applog/USFM chmod 760 /home/applog/USFM 建立用户usfm，设置主目录为/home/applog/USFM，设置密码为usfms1234 1、建用户：add">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-12T07:48:48.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 用户组，用户，增删改">
+<meta name="twitter:description" content="0、建立用户   操作步骤： useradd -d /home/applog/USFM -m usfm passwd usfm 输入密码usfms1234 chown -R usfm:usfm /home/applog/USFM chmod 760 /home/applog/USFM 建立用户usfm，设置主目录为/home/applog/USFM，设置密码为usfms1234 1、建用户：add">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-linux-用户组，用户，增删改" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/07/linux-用户组，用户，增删改/" class="article-date">
+  <time datetime="2017-03-07T07:47:00.000Z" itemprop="datePublished">2017-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux 用户组，用户，增删改
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>0、建立用户  </p>
+<p>操作步骤：</p>
+<p>useradd -d /home/applog/USFM -m usfm</p>
+<p>passwd usfm</p>
+<p>输入密码usfms1234</p>
+<p>chown -R usfm:usfm /home/applog/USFM</p>
+<p>chmod 760 /home/applog/USFM</p>
+<p>建立用户usfm，设置主目录为/home/applog/USFM，设置密码为usfms1234</p>
+<p>1、建用户：<br>adduser phpq                             //新建phpq用户<br>passwd phpq                               //给phpq用户设置密码</p>
+<p>2、建工作组<br>groupadd test                          //新建test工作组</p>
+<p>3、新建用户同时增加工作组<br>useradd -g test phpq                      //新建phpq用户并增加到test工作组</p>
+<p>注：：-g 所属组 -d 家目录 -s 所用的SHELL</p>
+<p>4、给已有的用户增加工作组<br>usermod -G groupname username</p>
+<p>或者：gpasswd -a user group</p>
+<p>5、临时关闭：在/etc/shadow文件中属于该用户的行的第二个字段（密码）前面加上<em>就可以了。想恢复该用户，去掉</em>即可。</p>
+<p>或者使用如下命令关闭用户账号：<br>passwd peter –l</p>
+<p>重新释放：<br>passwd peter –u</p>
+<p>6、永久性删除用户账号<br>userdel peter</p>
+<p>groupdel peter</p>
+<p>usermod –G peter peter   （强制删除该用户的主目录和主目录下的所有文件和子目录）</p>
+<p>7、从组中删除用户<br>编辑/etc/group 找到GROUP1那一行，删除 A<br>或者用命令<br>gpasswd -d A GROUP</p>
+<p>8、显示用户信息<br>id user<br>cat /etc/passwd</p>
+<p>9、查看用户所在组</p>
+<p>cat /etc/group</p>
+<p>10、给当前用户增加目录权限</p>
+<p>chown -R user:usergroup /usr/local/bin<br>user为你的普通用户<br>usergroup为这个普通用户的组</p>
+<p>11、修改文件所属用户和组</p>
+<p><strong>使用chown命令可以修改文件或目录所属的用户：</strong></p>
+<pre><code>命令：chown 用户 目录或文件名
+
+例如：chown qq /home/qq  (把home目录下的qq目录的拥有者改为qq用户) 
+</code></pre><p><strong>使用chgrp命令可以修改文件或目录所属的组：</strong></p>
+<pre><code>命令：chgrp 组 目录或文件名
+
+例如：chgrp qq /home/qq  (把home目录下的qq目录的所属组改为qq组)
+</code></pre><p>12、限制某个用户不能访问该文件夹</p>
+<p>setfacl -R -m u:fangwei:- /home/wwwroot/bolang</p>
+<p>13、让某个用户，对文件有访问权限<br>因为你使用root登录的所以在root用户下<br>setfacl -m u:xman:rxw 文件名</p>
+<p>14.更改用户家目录  </p>
+<p>usermod -m -d /home/user2 -u 1001 user1;</p>
+<p>或</p>
+<p>usermod -d /home/user2 -m -u 1001 user1;</p>
+<p>更详细的用户和用户组的解说请参考<br>Linux 用户和用户组详细解说<br>本文主要讲述在Linux 系统中用户(user)和用户组(group)管理相应的概念；用户(user)和用户组(group)相关命令的列举；其中也对单用户多任务，多用户多任务也做以解说。</p>
+<p>本篇文章来源于 PHP资讯 原文链接：<a href="http://www.phpq.net/linux/linux-add-delete-user-group.html" target="_blank" rel="noopener">http://www.phpq.net/linux/linux-add-delete-user-group.html</a></p>
+<p>Linux 用户（user）和用户组（group）管理概述</p>
+<p>、理解Linux的单用户多任务，多用户多任务概念；  </p>
+<p>Linux 是一个多用户、多任务的操作系统；我们应该了解单用户多任务和多用户多任务的概念；</p>
+<p><strong><br>1、Linux 的单用户多任务；  
+</strong><br>单 用户多任务；比如我们以beinan 登录系统，进入系统后，我要打开gedit 来写文档，但在写文档的过程中，我感觉少点音乐，所以又打开xmms 来点音乐；当然听点音乐还不行，MSN 还得打开，想知道几个弟兄现在正在做什么，这样一样，我在用beinan 用户登录时，执行了gedit 、xmms以及msn等，当然还有输入法fcitx ；这样说来就有点简单了，一个beinan用户，为了完成工作，执行了几个任务；当然beinan这个用户，其它的人还能以远程登录过来，也能做其它的工 作。</p>
+<p><strong><br>2、Linux 的多用户、多任务；  
+</strong></p>
+<p>有时可能是很多用户同时用同一个系统，但并不所有的用户都一定都要做同一件事，所以这就有多用户多任务之说；</p>
+<p>举个例子，比如LinuxSir.Org 服务器，上面有FTP 用户、系统管理员、web 用户、常规普通用户等，在同一时刻，可能有的弟兄正在访问论坛；有的可能在上传软件包管理子站，比如luma 或Yuking 兄在管理他们的主页系统和FTP ；在与此同时，可能还会有系统管理员在维护系统；浏览主页的用的是nobody 用户，大家都用同一个，而上传软件包用的是FTP用户；管理员的对系统的维护或查看，可能用的是普通帐号或超级权限root帐号；<strong>不同用户所具有的权限也不同，要完成不同的任务得需要不同的用户</strong>，也可以说<strong>不同的用户，可能完成的工作也不一样</strong>；</p>
+<p>值得注意的是：多用户多任务并不是大家同时挤到一接在一台机器的的键盘和显示器前来操作机器，多用户可能通过远程登录来进行，比如对服务器的远程控制，只要有用户权限任何人都是可以上去操作或访问的；</p>
+<p><strong><br>3、用户的角色区分；  
+</strong></p>
+<p>用户在系统中是分角色的，在Linux 系统中，由于角色不同，权限和所完成的任务也不同；值得注意的是用户的角色是通过UID和识别的，特别是UID；在系统管理中，系统管理员一定要坚守UID 唯一的特性；</p>
+<p>root 用户：系统唯一，是真实的，可以登录系统，可以操作系统任何文件和命令，拥有最高权限；<br>虚拟用户：这类用户也被称之为伪用户或假用户，与真实用户区分开来，这类用户不具有登录系统的能力，但却是系统运行不可缺少的用户，比如bin、daemon、adm、ftp、mail等；这类用户都系统自身拥有的，而非后来添加的，当然我们也可以添加虚拟用户；<br>普通真实用户：这类用户能登录系统，但只能操作自己家目录的内容；权限有限；这类用户都是系统管理员自行添加的；</p>
+<p><strong><br>4、多用户操作系统的安全；  
+</strong></p>
+<p>多用户系统从事实来说对系统管理更为方便。从安全角度来说，多用户管理的系统更为安全，比如beinan用户下的某个文件不想让其它用户看到，只是 设置一下文件的权限，只有beinan一个用户可读可写可编辑就行了，这样一来只有beinan一个用户可以对其私有文件进行操作，Linux 在多用户下表现最佳，Linux能很好的保护每个用户的安全，但我们也得学会Linux 才是，再安全的系统，如果没有安全意识的管理员或管理技术，这样的系统也不是安全的。</p>
+<p>从服务器角度来说，多用户的下的系统安全性也是最为重要的，我们常用的Windows 操作系统，它在系纺权限管理的能力只能说是一般般，根本没有没有办法和Linux或Unix 类系统相比；</p>
+<p><strong><br>二、用户(user）和用户组（group）概念；  
+</strong><br><strong><br>1、用户（user）的概念；  
+</strong><br>通 过前面对Linux 多用户的理解，我们明白Linux 是真正意义上的多用户操作系统，所以我们能在Linux系统中建若干用户（user）。比如我们的同事想用我的计算机，但我不想让他用我的用户名登录，因 为我的用户名下有不想让别人看到的资料和信息（也就是隐私内容）这时我就可以给他建一个新的用户名，让他用我所开的用户名去折腾，这从计算机安全角度来说 是符合操作规则的；</p>
+<p>当然用户（user）的概念理解还不仅仅于此，在Linux系统中还有一些用户是用来完成特定任务的，比如nobody和ftp 等，我们访问LinuxSir.Org 的网页程序，就是nobody用户；我们匿名访问ftp 时，会用到用户ftp或nobody ；如果您想了解Linux系统的一些帐号，请查看 /etc/passwd ；</p>
+<p><strong><br>2、用户组（group）的概念；  
+</strong><br>用 户组（group）就是具有相同特征的用户（user）的集合体；比如有时我们要让多个用户具有相同的权限，比如查看、修改某一文件或执行某个命令，这时 我们需要用户组，我们把用户都定义到同一用户组，我们通过修改文件或目录的权限，让用户组具有一定的操作权限，这样用户组下的用户对该文件或目录都具有相 同的权限，这是我们通过定义组和修改文件的权限来实现的；</p>
+<p>举例：我们为了让一些用户有权限查看某一文档，比如是一个时间表，而编写时间表的人要具有读写执行的权限，我们想让一些用户知道这个时间表的内容， 而不让他们修改，所以我们可以把这些用户都划到一个组，然后来修改这个文件的权限，让用户组可读，这样用户组下面的每个用户都是可读的；<br><strong><br>用户和用户组的对应关系是：一对一、多对一、一对多或多对多；  
+</strong><br>一对一：某个用户可以是某个组的唯一成员；<br>多对一：多个用户可以是某个唯一的组的成员，不归属其它用户组；比如beinan和linuxsir两个用户只归属于beinan用户组；<br>一对多：某个用户可以是多个用户组的成员；比如beinan可以是root组成员，也可以是linuxsir用户组成员，还可以是adm用户组成员；<br>多对多：多个用户对应多个用户组，并且几个用户可以是归属相同的组；其实多对多的关系是前面三条的扩展；理解了上面的三条，这条也能理解；</p>
+<p><strong><br>三、用户（user）和用户组（group）相关的配置文件、命令或目录；  
+</strong><br><strong><br>1、与用户（user）和用户组（group）相关的配置文件；  
+</strong></p>
+<p><strong><br>1）与用户（user）相关的配置文件；  
+</strong></p>
+<p>/etc/passwd 注：用户（user）的配置文件；<br>/etc/shadow 注：用户（user）影子口令文件；</p>
+<p><strong><br>2）与用户组（group）相关的配置文件；  
+</strong><br>/etc/group 注：用户组（group）配置文件；<br>/etc/gshadow 注：用户组（group）的影子文件；</p>
+<p><strong><br>2、管理用户（user）和用户组（group）的相关工具或命令；  
+</strong><br><strong><br>1）管理用户（user）的工具或命令；  
+</strong></p>
+<p><code>useradd    注：添加用户  
+adduser    注：添加用户  
+passwd     注：为用户设置密码  
+usermod  注：修改用户命令，可以通过usermod 来修改登录名、用户的家目录等等；  
+pwcov       注：同步用户从/etc/passwd 到/etc/shadow  
+pwck         注：pwck是校验用户配置文件/etc/passwd 和/etc/shadow 文件内容是否合法或完整；  
+pwunconv  注：是pwcov 的立逆向操作，是从/etc/shadow和 /etc/passwd 创建/etc/passwd ，然后会删除 /etc/shadow 文件；  
+finger        注：查看用户信息工具  
+id              注：查看用户的UID、GID及所归属的用户组  
+chfn          注：更改用户信息工具  
+su             注：用户切换工具  
+sudo         注：sudo 是通过另一个用户来执行命令（execute a command as another user），su 是用来切换用户，然后通过切换到的用户来完成相应的任务，但sudo 能后面直接执行命令，比如sudo 不需要root 密码就可以执行root 赋与的执行只有root才能执行相应的命令；但得通过visudo 来编辑/etc/sudoers来实现；  
+visudo      注：visodo 是编辑 /etc/sudoers 的命令；也可以不用这个命令，直接用vi 来编辑 /etc/sudoers 的效果是一样的；  
+sudoedit  注：和sudo 功能差不多；</code></p>
+<p><strong><br>2）管理用户组（group）的工具或命令；  
+</strong></p>
+<p><code>groupadd  注：添加用户组；  
+groupdel         注：删除用户组；  
+groupmod        注：修改用户组信息  
+groups     注：显示用户所属的用户组  
+grpck  
+grpconv   注：通过/etc/group和/etc/gshadow 的文件内容来同步或创建/etc/gshadow ，如果/etc/gshadow 不存在则创建；  
+grpunconv   注：通过/etc/group 和/etc/gshadow 文件内容来同步或创建/etc/group ，然后删除gshadow文件；</code></p>
+<p><strong><br>3、/etc/skel 目录；  
+</strong><br>/etc /skel目录一般是存放用户启动文件的目录，这个目录是由root权限控制，当我们添加用户时，这个目录下的文件自动复制到新添加的用户的家目录下； /etc/skel 目录下的文件都是隐藏文件，也就是类似.file格式的；我们可通过修改、添加、删除/etc/skel目录下的文件，来为用户提供一个统一、标准的、默 认的用户环境；</p>
+<p><code>[root@localhost beinan]# ls -la /etc/skel/  
+总用量 92  
+drwxr-xr-x    3 root root  4096  8月 11 23:32 .  
+drwxr-xr-x  115 root root 12288 10月 14 13:44 ..  
+-rw-r--r--    1 root root    24  5月 11 00:15 .bash_logout  
+-rw-r--r--    1 root root   191  5月 11 00:15 .bash_profile  
+-rw-r--r--    1 root root   124  5月 11 00:15 .bashrc  
+-rw-r--r--    1 root root  5619 2005-03-08  .canna  
+-rw-r--r--    1 root root   438  5月 18 15:23 .emacs  
+-rw-r--r--    1 root root   120  5月 23 05:18 .gtkrc  
+drwxr-xr-x    3 root root  4096  8月 11 23:16 .kde  
+-rw-r--r--    1 root root   658 2005-01-17  .zshrc</code></p>
+<p>/etc/skel 目录下的文件，一般是我们用useradd 和adduser 命令添加用户（user）时，系统自动复制到新添加用户（user）的家目录下；如果我们通过修改 /etc/passwd 来添加用户时，我们可以自己创建用户的家目录，然后把/etc/skel 下的文件复制到用户的家目录下，然后要用chown 来改变新用户家目录的属主；<br><strong><br>4、/etc/login.defs 配置文件；  
+</strong><br>/etc/login.defs 文件是当创建用户时的一些规划，比如创建用户时，是否需要家目录，UID和GID的范围；用户的期限等等，这个文件是可以通过root来定义的；</p>
+<p>比如Fedora 的 /etc/logins.defs 文件内容；</p>
+<p>`# <em>REQUIRED</em>  </p>
+<h1 id="Directory-where-mailboxes-reside-or-name-of-file-relative-to-the"><a href="#Directory-where-mailboxes-reside-or-name-of-file-relative-to-the" class="headerlink" title="Directory where mailboxes reside, _or_ name of file, relative to the"></a>Directory where mailboxes reside, _or_ name of file, relative to the</h1><h1 id="home-directory-If-you-do-define-both-MAIL-DIR-takes-precedence"><a href="#home-directory-If-you-do-define-both-MAIL-DIR-takes-precedence" class="headerlink" title="home directory.  If you _do_ define both, MAIL_DIR takes precedence."></a>home directory.  If you _do_ define both, MAIL_DIR takes precedence.</h1><h1 id="QMAIL-DIR-is-for-Qmail"><a href="#QMAIL-DIR-is-for-Qmail" class="headerlink" title="QMAIL_DIR is for Qmail"></a>QMAIL_DIR is for Qmail</h1><h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><p>#QMAIL_DIR      Maildir<br>MAIL_DIR        /var/spool/mail  注：创建用户时，要在目录/var/spool/mail中创建一个用户mail文件；  </p>
+<p>#MAIL_FILE      .mail  </p>
+<h1 id="Password-aging-controls"><a href="#Password-aging-controls" class="headerlink" title="Password aging controls:"></a>Password aging controls:</h1><h1 id="-1"><a href="#-1" class="headerlink" title=" "></a> </h1><h1 id="PASS-MAX-DAYS-Maximum-number-of-days-a-password-may-be-used"><a href="#PASS-MAX-DAYS-Maximum-number-of-days-a-password-may-be-used" class="headerlink" title="PASS_MAX_DAYS   Maximum number of days a password may be used."></a>PASS_MAX_DAYS   Maximum number of days a password may be used.</h1><h1 id="PASS-MIN-DAYS-Minimum-number-of-days-allowed-between-password-changes"><a href="#PASS-MIN-DAYS-Minimum-number-of-days-allowed-between-password-changes" class="headerlink" title="PASS_MIN_DAYS   Minimum number of days allowed between password changes."></a>PASS_MIN_DAYS   Minimum number of days allowed between password changes.</h1><h1 id="PASS-MIN-LEN-Minimum-acceptable-password-length"><a href="#PASS-MIN-LEN-Minimum-acceptable-password-length" class="headerlink" title="PASS_MIN_LEN    Minimum acceptable password length."></a>PASS_MIN_LEN    Minimum acceptable password length.</h1><h1 id="PASS-WARN-AGE-Number-of-days-warning-given-before-a-password-expires"><a href="#PASS-WARN-AGE-Number-of-days-warning-given-before-a-password-expires" class="headerlink" title="PASS_WARN_AGE   Number of days warning given before a password expires."></a>PASS_WARN_AGE   Number of days warning given before a password expires.</h1><h1 id="-2"><a href="#-2" class="headerlink" title=" "></a> </h1><p>PASS_MAX_DAYS   99999   注：用户的密码不过期最多的天数；<br>PASS_MIN_DAYS   0       注：密码修改之间最小的天数；<br>PASS_MIN_LEN    5       注：密码最小长度；<br>PASS_WARN_AGE   7       注：  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=" "></a> </h1><h1 id="Min-max-values-for-automatic-uid-selection-in-useradd"><a href="#Min-max-values-for-automatic-uid-selection-in-useradd" class="headerlink" title="Min/max values for automatic uid selection in useradd"></a>Min/max values for automatic uid selection in useradd</h1><h1 id="-4"><a href="#-4" class="headerlink" title=" "></a> </h1><p>UID_MIN                   500  注：最小UID为500 ，也就是说添加用户时，UID 是从500开始的；<br>UID_MAX                 60000   注：最大UID为60000；  </p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=" "></a> </h1><h1 id="Min-max-values-for-automatic-gid-selection-in-groupadd"><a href="#Min-max-values-for-automatic-gid-selection-in-groupadd" class="headerlink" title="Min/max values for automatic gid selection in groupadd"></a>Min/max values for automatic gid selection in groupadd</h1><h1 id="-6"><a href="#-6" class="headerlink" title=" "></a> </h1><p>GID_MIN                   500   注：GID 是从500开始；<br>GID_MAX                 60000  </p>
+<h1 id="-7"><a href="#-7" class="headerlink" title=" "></a> </h1><h1 id="If-defined-this-command-is-run-when-removing-a-user"><a href="#If-defined-this-command-is-run-when-removing-a-user" class="headerlink" title="If defined, this command is run when removing a user."></a>If defined, this command is run when removing a user.</h1><h1 id="It-should-remove-any-at-cron-print-jobs-etc-owned-by"><a href="#It-should-remove-any-at-cron-print-jobs-etc-owned-by" class="headerlink" title="It should remove any at/cron/print jobs etc. owned by"></a>It should remove any at/cron/print jobs etc. owned by</h1><h1 id="the-user-to-be-removed-passed-as-the-first-argument"><a href="#the-user-to-be-removed-passed-as-the-first-argument" class="headerlink" title="the user to be removed (passed as the first argument)."></a>the user to be removed (passed as the first argument).</h1><h1 id="-8"><a href="#-8" class="headerlink" title=" "></a> </h1><p>#USERDEL_CMD    /usr/sbin/userdel_local  </p>
+<h1 id="-9"><a href="#-9" class="headerlink" title=" "></a> </h1><h1 id="If-useradd-should-create-home-directories-for-users-by-default"><a href="#If-useradd-should-create-home-directories-for-users-by-default" class="headerlink" title="If useradd should create home directories for users by default"></a>If useradd should create home directories for users by default</h1><h1 id="On-RH-systems-we-do-This-option-is-ORed-with-the-m-flag-on"><a href="#On-RH-systems-we-do-This-option-is-ORed-with-the-m-flag-on" class="headerlink" title="On RH systems, we do. This option is ORed with the -m flag on"></a>On RH systems, we do. This option is ORed with the -m flag on</h1><h1 id="useradd-command-line"><a href="#useradd-command-line" class="headerlink" title="useradd command line."></a>useradd command line.</h1><h1 id="-10"><a href="#-10" class="headerlink" title=" "></a> </h1><p>CREATE_HOME     yes   注：是否创用户家目录，要求创建；`</p>
+<p><strong><br>5、/etc/default/useradd 文件；  
+</strong></p>
+<p>通过useradd 添加用户时的规则文件；</p>
+<p><code># useradd defaults file  
+GROUP=100  
+HOME=/home  注：把用户的家目录建在/home中；  
+INACTIVE=-1  注：是否启用帐号过期停权，-1表示不启用；  
+EXPIRE=   注：帐号终止日期，不设置表示不启用；  
+SHELL=/bin/bash  注：所用SHELL的类型；  
+SKEL=/etc/skel   注： 默认添加用户的目录默认文件存放位置；也就是说，当我们用adduser添加用户时，用户家目录下的文件，都是从这个目录中复制过去的；</code></p>
+<p><strong><br>后记：  
+</strong></p>
+<p>关于用户（user）和用户组（group）管理内容大约就是这么多；只要把上面所说的内容了解和掌握，用户（user）和用户组（group）管 理就差不多了；由于用户（user）和用户组（group）是和文件及目录权限联系在一起的，所以文件及目录权限的操作也会独立成文来给大家介绍；</p>
+<p>摘自 <a href="http://fedora.linuxsir.org/main/?q=node/91" target="_blank" rel="noopener">http://fedora.linuxsir.org/main/?q=node/91</a></p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2017/03/07/linux-用户组，用户，增删改/" data-id="cjs1h70m0001yg4exyfaaqoaf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/12/svn搭建和使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          svn搭建和使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/08/Firefox伪造请求头/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Firefox伪造请求头</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/solr/">solr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kill/">kill</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux常用命令/">linux常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vagrant/">vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/kill/" style="font-size: 10px;">kill</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux常用命令/" style="font-size: 10px;">linux常用命令</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 20px;">svn</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2099/03/">March 2099</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/charles抓包工具的中文乱码解决方法/">charles抓包工具的中文乱码解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/sssss/">忘记 iOS 的访问限制密码，如何找回或重设？</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/08/安装Scrapy-报错/">安装Scrapy   报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/coreseek搜索中文为0-怎么解决-看我原创/">coreseek搜索中文为0 怎么解决 看我原创</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
