@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>mysqlbinlog | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MySQL数据库恢复(使用mysqlbinlog命令) binlog是通过记录二进制文件方式来备份数据，然后在从二进制文件将数据恢复到某一时段或某一操作点。1：开启binlog日志记录修改mysql配置文件mysql.ini，在[mysqld]节点下添加复制代码 代码如下: log-binlog-bin = E:/log/logbin.log 路径中不要包含中文和空格。重启mysql服务。通过命令">
+<meta name="keywords" content="目前这里只分享php|python|html的技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysqlbinlog">
+<meta property="og:url" content="https://lizongxue.github.io/2015/02/19/mysqlbinlog/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="MySQL数据库恢复(使用mysqlbinlog命令) binlog是通过记录二进制文件方式来备份数据，然后在从二进制文件将数据恢复到某一时段或某一操作点。1：开启binlog日志记录修改mysql配置文件mysql.ini，在[mysqld]节点下添加复制代码 代码如下: log-binlog-bin = E:/log/logbin.log 路径中不要包含中文和空格。重启mysql服务。通过命令">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-12T01:21:12.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysqlbinlog">
+<meta name="twitter:description" content="MySQL数据库恢复(使用mysqlbinlog命令) binlog是通过记录二进制文件方式来备份数据，然后在从二进制文件将数据恢复到某一时段或某一操作点。1：开启binlog日志记录修改mysql配置文件mysql.ini，在[mysqld]节点下添加复制代码 代码如下: log-binlog-bin = E:/log/logbin.log 路径中不要包含中文和空格。重启mysql服务。通过命令">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-mysqlbinlog" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/19/mysqlbinlog/" class="article-date">
+  <time datetime="2015-02-19T01:19:00.000Z" itemprop="datePublished">2015-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysqlbinlog
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>MySQL数据库恢复(使用mysqlbinlog命令)</p>
+<p>binlog是通过记录二进制文件方式来备份数据，然后在从二进制文件将数据恢复到某一时段或某一操作点。<br>1：开启binlog日志记录<br>修改mysql配置文件mysql.ini，在[mysqld]节点下添加<br>复制代码 代码如下:</p>
+<h1 id="log-bin"><a href="#log-bin" class="headerlink" title="log-bin"></a>log-bin</h1><p>log-bin = E:/log/logbin.log</p>
+<p>路径中不要包含中文和空格。重启mysql服务。通过命令行停止和启动mysql服务<br>复制代码 代码如下:</p>
+<p>c:>net stop mysql;<br>c:>net start mysql;</p>
+<p>进入命令行进入mysql并查看二进制日志是否已经启动<br>Sql代码<br>复制代码 代码如下:</p>
+<p>mysql&gt;show variables like ‘log_%’;</p>
+<p>日志成功开启后，会在E:/log/目录下创建logbin.index和logbin.000001两个文件。logbin.000001就是数据库的备份文件，以后就可以通过此文件对数据库进行恢复操作。</p>
+<p>2：查看备份的二进制文件<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog e:/log/logbin.000001</p>
+<p>日后记录的操作多了，命令行方式基本就用不上了。可以使用将日志导出文件的方式来查看日志内容<br>2.1 导出<br>Xml代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog e:/log/logbin.000001 &gt; e:/log/log.txt</p>
+<p>“&gt;”: 导入到文件中; “&gt;&gt;”: 追加到文件中<br>如果有多个日志文件<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin> mysqlbinlog e:/log/logbin.000001 &gt; e:/log/log.sql<br>c:\mysql\bin> mysqlbinlog e:/log/logbin.000002 &gt;&gt; e:/log/log.sq</p>
+<p>2.2 按指定位置导出：<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog –start-position=185 –stop-position=338 e:/log/logbin.000001 &gt; e:/log/log3.txt</p>
+<p>2.3 按指定时间导出：<br>Xml代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog –start-datetime=”2010-01-07 11:25:56” –stop-datetime=”2010-01-07 13:23:50” e:/log/logbin.000001 &gt; e:/log/log_by_date22.txt</p>
+<p>3：从备份恢复数据库<br>做了一次更新操作，之后日志的内容如下：<br>Sql代码<br>复制代码 代码如下:</p>
+<p>;<br>;<br>DELIMITER ;</p>
+<h1 id="at-4"><a href="#at-4" class="headerlink" title="at 4"></a>at 4</h1><p>#110107 13:23:50 server id 1 end_log_pos 106 Start: binlog v 4, server v 5.1.53-community-log created 110107 13:23:50 at startup</p>
+<h1 id="Warning-this-binlog-is-either-in-use-or-was-not-closed-properly"><a href="#Warning-this-binlog-is-either-in-use-or-was-not-closed-properly" class="headerlink" title="Warning: this binlog is either in use or was not closed properly."></a>Warning: this binlog is either in use or was not closed properly.</h1><p>ROLLBACK;<br>BINLOG ‘<br>ZqMmTQ8BAAAAZgAAAGoAAAABAAQANS4xLjUzLWNvbW11bml0eS1sb2cAAAAAAAAAAAAAAAAAAAAA<br>AAAAAAAAAAAAAAAAAABmoyZNEzgNAAgAEgAEBAQEEgAAUwAEGggAAAAICAgC<br>‘;</p>
+<h1 id="at-106"><a href="#at-106" class="headerlink" title="at 106"></a>at 106</h1><p>#110107 13:26:58 server id 1 end_log_pos 185 Query thread_id=44 exec_time=1 error_code=0<br>SET TIMESTAMP=1294378018;<br>SET @@session.pseudo_thread_id=44;<br>SET @@session.foreign_key_checks=1, @@session.sql_auto_is_null=1, @@session.unique_checks=1, @@session.autocommit=1;<br>SET @@session.sql_mode=1344274432;<br>SET @@session.auto_increment_increment=1, @@session.auto_increment_offset=1;<br>;<br>SET @@session.character_set_client=33,@@session.collation_connection=33,@@session.collation_server=33;<br>SET @@session.lc_time_names=0;<br>SET @@session.collation_database=DEFAULT;<br>BEGIN<br>;</p>
+<h1 id="at-185"><a href="#at-185" class="headerlink" title="at 185"></a>at 185</h1><p>#110107 13:26:58 server id 1 end_log_pos 338 Query thread_id=44 exec_time=1 error_code=0<br>use ncl-interactive;<br>SET TIMESTAMP=1294378018;<br>UPDATE <code>t_system_id</code> SET <code>id_value</code>=’3000’ WHERE (<code>table_name</code>=’t_working_day’)<br>;</p>
+<h1 id="at-338"><a href="#at-338" class="headerlink" title="at 338"></a>at 338</h1><p>#110107 13:26:58 server id 1 end_log_pos 365 Xid = 8016<br>COMMIT;<br>DELIMITER ;<br>DELIMITER ;<br>DELIMITER ;</p>
+<h1 id="End-of-log-file"><a href="#End-of-log-file" class="headerlink" title="End of log file"></a>End of log file</h1><p>ROLLBACK ;<br>;<br>;<br>;<br>DELIMITER ;</p>
+<h1 id="at-4-1"><a href="#at-4-1" class="headerlink" title="at 4"></a>at 4</h1><p>#110107 13:23:50 server id 1 end_log_pos 106 Start: binlog v 4, server v 5.1.53-community-log created 110107 13:23:50 at startup</p>
+<h1 id="Warning-this-binlog-is-either-in-use-or-was-not-closed-properly-1"><a href="#Warning-this-binlog-is-either-in-use-or-was-not-closed-properly-1" class="headerlink" title="Warning: this binlog is either in use or was not closed properly."></a>Warning: this binlog is either in use or was not closed properly.</h1><p>ROLLBACK;<br>BINLOG ‘<br>ZqMmTQ8BAAAAZgAAAGoAAAABAAQANS4xLjUzLWNvbW11bml0eS1sb2cAAAAAAAAAAAAAAAAAAAAA<br>AAAAAAAAAAAAAAAAAABmoyZNEzgNAAgAEgAEBAQEEgAAUwAEGggAAAAICAgC<br>‘;</p>
+<h1 id="at-106-1"><a href="#at-106-1" class="headerlink" title="at 106"></a>at 106</h1><p>#110107 13:26:58 server id 1 end_log_pos 185 Query thread_id=44 exec_time=1 error_code=0<br>SET TIMESTAMP=1294378018;<br>SET @@session.pseudo_thread_id=44;<br>SET @@session.foreign_key_checks=1, @@session.sql_auto_is_null=1, @@session.unique_checks=1, @@session.autocommit=1;<br>SET @@session.sql_mode=1344274432;<br>SET @@session.auto_increment_increment=1, @@session.auto_increment_offset=1;<br>;<br>SET @@session.character_set_client=33,@@session.collation_connection=33,@@session.collation_server=33;<br>SET @@session.lc_time_names=0;<br>SET @@session.collation_database=DEFAULT;<br>BEGIN<br>;</p>
+<h1 id="at-185-1"><a href="#at-185-1" class="headerlink" title="at 185"></a>at 185</h1><p>#110107 13:26:58 server id 1 end_log_pos 338 Query thread_id=44 exec_time=1 error_code=0<br>use ncl-interactive;<br>SET TIMESTAMP=1294378018;<br>UPDATE <code>t_system_id</code> SET <code>id_value</code>=’3000’ WHERE (<code>table_name</code>=’t_working_day’)<br>;</p>
+<h1 id="at-338-1"><a href="#at-338-1" class="headerlink" title="at 338"></a>at 338</h1><p>#110107 13:26:58 server id 1 end_log_pos 365 Xid = 8016<br>COMMIT;<br>DELIMITER ;<br>DELIMITER ;<br>DELIMITER ;</p>
+<h1 id="End-of-log-file-1"><a href="#End-of-log-file-1" class="headerlink" title="End of log file"></a>End of log file</h1><p>ROLLBACK ;<br>;</p>
+<p>3.1 恢复：<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog e:/log/logbin.000001 | mysql -u root -p</p>
+<p>3.2 按指定位置恢复：<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog –start-position=185 –stop-position=338 e:/log/logbin.000001 | mysql -u root -p</p>
+<p>3.3 按指定时间恢复：<br>Xml代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysqlbinlog –start-datetime=”2010-01-07 11:25:56” –stop-datetime=”2010-01-07 13:23:50” e:/log/logbin.000001 | mysql -u root -p</p>
+<p>3.4 通过导出的脚本文件恢复<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysql -e “source e:/log/log.sql”</p>
+<p>4.其他常用操作<br>4.1 查看所有日志文件</p>
+<p>Sql代码<br>复制代码 代码如下:</p>
+<p>mysql&gt;show master logs;</p>
+<p>4.2 当前使用的binlog文件<br>Sql代码<br>复制代码 代码如下:</p>
+<p>mysql&gt;show binlog events \g;</p>
+<p>4.3 产生一个新的binlog日志文件<br>Sql代码<br>复制代码 代码如下:</p>
+<p>mysql&gt;flush logs;</p>
+<p>4.4 删除所有二进制日志，并从新开始记录（注意：reset master命令会删除所有的二进制日志）<br>Sql代码<br>复制代码 代码如下:</p>
+<p>mysql &gt; flush logs;<br>mysql &gt; reset master;</p>
+<p>4.5 快速备份数据到sql文件</p>
+<p>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin&gt;mysqldump -u root -p –opt –quick interactive &gt; e:/log/mysqldump.sql</p>
+<p>为了方便查看，把从脚本恢复的命令在写一次<br>Sql代码<br>复制代码 代码如下:</p>
+<p>c:\mysql\bin>mysql -e “source e:/log/mysqldump.sql”</p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2015/02/19/mysqlbinlog/" data-id="cjs1350t4000wo0exl1tmwk5o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/04/症状：Call-to-undefined-function-PMA-sanitize-in-Message-class-p/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          症状：Call to undefined function PMA_sanitize() in Message.class.p 
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/12/ps-aux用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ps aux用法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kill/">kill</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/kill/" style="font-size: 10px;">kill</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2099/03/">March 2099</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/24/提示磁盘VBoxManage-exe-满/">提示磁盘VBoxManage.exe:满</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/13/图片缓存-浏览器刷新-和-304-Not-Modified-与-If-Modified-Since/">图片缓存:浏览器刷新 和 304 Not Modified 与 If-Modified-Since  </a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/04/症状：Call-to-undefined-function-PMA-sanitize-in-Message-class-p/">症状：Call to undefined function PMA_sanitize() in Message.class.p </a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/19/mysqlbinlog/">mysqlbinlog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
