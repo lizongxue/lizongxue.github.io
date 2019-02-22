@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP开发规范 | 李宗雪的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为了更好的提高技术部的工作效率，保证开发的有效性和合理性，并可最大程度的提高程序代码的可读性和可重复利用性，指定此规范。开发团队根据自己的实际情况，可以对本规范进行补充或裁减。   1、程序员可以了解任何代码，弄清程序的状况；2、新人可以很快的适应环境；3、防止新接触PHP的人出于节省时间的需要，自创一套风格并养成终生的习惯；4、防止新接触PHP的人一次次的犯同样的错误；5、在一致的环境下，人们可">
+<meta name="keywords" content="php规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP开发规范">
+<meta property="og:url" content="https://lizongxue.github.io/2017/01/22/PHP开发规范/index.html">
+<meta property="og:site_name" content="李宗雪的博客">
+<meta property="og:description" content="为了更好的提高技术部的工作效率，保证开发的有效性和合理性，并可最大程度的提高程序代码的可读性和可重复利用性，指定此规范。开发团队根据自己的实际情况，可以对本规范进行补充或裁减。   1、程序员可以了解任何代码，弄清程序的状况；2、新人可以很快的适应环境；3、防止新接触PHP的人出于节省时间的需要，自创一套风格并养成终生的习惯；4、防止新接触PHP的人一次次的犯同样的错误；5、在一致的环境下，人们可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-22T09:20:12.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP开发规范">
+<meta name="twitter:description" content="为了更好的提高技术部的工作效率，保证开发的有效性和合理性，并可最大程度的提高程序代码的可读性和可重复利用性，指定此规范。开发团队根据自己的实际情况，可以对本规范进行补充或裁减。   1、程序员可以了解任何代码，弄清程序的状况；2、新人可以很快的适应环境；3、防止新接触PHP的人出于节省时间的需要，自创一套风格并养成终生的习惯；4、防止新接触PHP的人一次次的犯同样的错误；5、在一致的环境下，人们可">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李宗雪的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术的天堂</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lizongxue.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="draft-PHP开发规范" class="article article-type-draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/22/PHP开发规范/" class="article-date">
+  <time datetime="2017-01-22T09:17:00.000Z" itemprop="datePublished">2017-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP开发规范
+    </h1>
+  
+
+      </header>
+    
+	<div class="article-entry" itemprop="articleBody">
+	  
+	  	
+	  	
+	  	  <p>为了更好的提高技术部的工作效率，保证开发的有效性和合理性，并可最大程度的提高程序代码的可读性和可重复利用性，指定此规范。开发团队根据自己的实际情况，可以对本规范进行补充或裁减。</p>
+<blockquote>
+<hr>
+<p><strong>1、程序员可以了解任何代码，弄清程序的状况；</strong><br><strong>2、新人可以很快的适应环境；</strong><br><strong>3、防止新接触PHP的人出于节省时间的需要，自创一套风格并养成终生的习惯；</strong><br><strong>4、防止新接触PHP的人一次次的犯同样的错误；</strong><br><strong>5、在一致的环境下，人们可以减少犯错的机会；</strong><br><strong>6、程序员们有了一致的敌人；</strong></p>
+</blockquote>
+<h1 id="2、整体要求"><a href="#2、整体要求" class="headerlink" title="2、整体要求"></a>2、整体要求</h1><p>    技术部php开发规范将参照PEAR的规范，基本采用PEAR指定的规范，在其基础上增加、修改或删除部分适合具体开发环境的规范。本规范只针对PHP开发过程中编码的规范，对于PHP开发项目中文件、目录、数据库等方面的规范，将不重点涉及。</p>
+<p>    本规范包含了PHP开发时程序编码中命名规范、代码缩进规则、控制结构、函数调用、函数定义、注释、包含代码、PHP标记、文件头的注释块、CVS标记、URL样例、常量命名等方面的规则。</p>
+<h1 id="3、安全规范"><a href="#3、安全规范" class="headerlink" title="3、安全规范"></a>3、安全规范</h1><p>    当我们尝试编码时，很多时候不知道如何去让自己的代码变得安全一点，因为我们缺乏安全常识，安全常识的规范可以帮你杜绝一些日常的菜鸟黑客的攻击，却不能阻止骨灰级专家们的凌厉攻势，所以更高深的安全我们还得从其他途径学习。</p>
+<h4 id="3-1、包含文件"><a href="#3-1、包含文件" class="headerlink" title="3.1、包含文件"></a>3.1、包含文件</h4><p>    PHP文件的包含在通过PHP的函数引入文件时，由于传入的文件名没有经过合理的校验，从而操作了预想之外的文件，就可能导致意外的文件泄露甚至恶意的代码注入。</p>
+<h6 id="3-1-1、命名规则"><a href="#3-1-1、命名规则" class="headerlink" title="3.1.1、命名规则"></a>3.1.1、命名规则</h6><p>    提取出来具有通用函数的包含文件，文件后缀以<code>.inc</code>来命名，表明这是一个包含文件。<br>    如果有多个<code>.inc</code>文件需要包含多页面，请把所有<code>.inc</code>文件封装在一个文件里面，具体到页面只需要包换一个<code>.inc</code>文件就可以了。</p>
+<p>    如：<code>xxx_session.inc</code>、<code>xxx_comm.inc</code>、<code>xxx_setting.inf</code>、<code>myssql_db.inc</code>。<br>    把以上文件以以下方式，封装在<code>xxx.basic.inc</code>文件里面：</p>
+<pre><code>require_once(&apos;xxx_session.inc&apos;);
+require_once(&apos;xxx_comm.inc&apos;);
+require_once(&apos;xxx_setting.inc&apos;);
+require_once(&apos;mysql_db.inc&apos;);
+</code></pre><blockquote>
+<p><strong>注意：</strong><br>是否需要封装到一个文件，视情况而定，如果每个<code>inc</code>的功能是分散到不同的页面使用的话，就不建议封装。</p>
+</blockquote>
+<h6 id="3-1-2、存放规则"><a href="#3-1-2、存放规则" class="headerlink" title="3.1.2、存放规则"></a>3.1.2、存放规则</h6><p>    一般包含文件不需要直接暴露给用户，所以应该放在 <code>Web Server</code> 访问不到的目录，避免因为配置问题而泄露设置信息</p>
+<h1 id="3-2、安全规则"><a href="#3-2、安全规则" class="headerlink" title="3.2、安全规则"></a>3.2、安全规则</h1><p>    <strong>请参考产品安全检查表。</strong></p>
+<blockquote>
+<p><strong>输入和输出：</strong></p>
+<blockquote>
+<p><strong>检查是否做了HTML代码的过滤</strong><br>可能出现的问题：如果有人输入恶意的HTML代码，会导致窃取cookie, 产生恶意登录表单，和破坏网站。</p>
+<p><strong>检查变量做数据库操作之前是否做了<code>escape</code></strong><br>可能出现的问题：如果一个要写入查询语句的字符串变量包含了某些特殊的字符，比如引号(‘,”)或者分号(;) 可能造成执行了预期之外的操作。   </p>
+<p>建议采用的方法：使用<code>mysql_escape_string()</code>或实现类似功能的函数。</p>
+<p><strong>检查输入数值的合法性</strong><br>可能出现的问题：异常的数值会造成问题。如果对输入的数值不做检查会造成不合法的或者错误的数据存入UDB、存入其它的数据库或者导致意料之外的程序操作发生。</p>
+</blockquote>
+<p><strong>举例：</strong>如果程序以用户输入的参数值做为文件名，进行文件操作，恶意输入系统文件名会造成系统损毁。</p>
+<blockquote>
+<p><strong>核实对cookie的使用以及对用户数据的处理</strong><br>可能出现的问题：不正确的cookie使用可能造成用户数据泄漏。</p>
+<p><strong>访问控制</strong><br>对内部使用的产品或者供合作方使用的产品，要考虑增加访问控制。</p>
+<p><strong>logs</strong><br>确保用户的保密信息没有记在log中(例如：用户的密码)；<br>确保对关键的用户操作保存了完整的用户访问记录。</p>
+<p><strong>https</strong><br>对敏感数据的传输要采用https。</p>
+</blockquote>
+</blockquote>
+<h1 id="3-3、一些针对PHP的规则"><a href="#3-3、一些针对PHP的规则" class="headerlink" title="3.3、一些针对PHP的规则"></a>3.3、一些针对PHP的规则</h1><p>    设置 <code>register_globals = off</code>;<br>    设置 <code>error_reporting = E_ALL</code>，并且要修正所有的<code>error</code>和<code>warning</code>;<br>    将实际的操作放在被引用的文件中。把引用文件放到不可以被直接浏览的目录下。</p>
+<blockquote>
+<p><code>register_globals</code>已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。</p>
+</blockquote>
+<h1 id="3-4、其它处理规则"><a href="#3-4、其它处理规则" class="headerlink" title="3.4、其它处理规则"></a>3.4、其它处理规则</h1><p>    其它处理规则</p>
+<h1 id="3-4-1、输入参数处理"><a href="#3-4-1、输入参数处理" class="headerlink" title="3.4.1、输入参数处理"></a>3.4.1、输入参数处理</h1><p>    页面接到参数需要SQL操作，这时候需要做转义，尤其需要注意“’”。</p>
+<p>    如：</p>
+<pre><code>$a = &apos; Let’s go &apos; ;
+$sql = &quot;Insert into tmp(col) values(&apos;$a&apos;)&quot;;
+</code></pre><p>这种情况出现错误的不确定性。</p>
+<h1 id="3-4-2、操作大HTML文本"><a href="#3-4-2、操作大HTML文本" class="headerlink" title="3.4.2、操作大HTML文本"></a>3.4.2、操作大HTML文本</h1><p>    很多时候需要存放一大段HTML文本供页面使用，象用户定制页头页脚等。<br>    需要剔除脚本标记，避免执行恶意php代码。<br>    转换“&lt;”“&gt;”号，保证代码完整<code>HTML</code>文本。</p>
+<h1 id="4、编码规范"><a href="#4、编码规范" class="headerlink" title="4、编码规范"></a>4、编码规范</h1><p>    对代码文件及代码进行规范化。</p>
+<h1 id="4-1、命名规范"><a href="#4-1、命名规范" class="headerlink" title="4.1、命名规范"></a>4.1、命名规范</h1><p>    制定统一的命名规范对于项目开发来说非常重要，不但可以养成程序员一个良好的开发习惯，还能增加程序的可读性、可移植性和可重用性，还能很好的提高项目开发的效率。</p>
+<p><strong>1.普通变量</strong></p>
+<p>普通变量命名遵循以下规则：<br>    a．所有字母都使用小写；<br>    b．对于一个变量使用多个单词的，使用<code>_</code>作为每个词的间隔。</p>
+<p>例如：<code>$base_dir</code>、<code>$red_rose_price</code>等。</p>
+<p><strong>2.静态变量</strong><br>静态变量命名遵循以下规则：<br>    a．静态变量使用小写的<code>s_</code>开头；<br>    b．静态变量所有字母都使用小写；<br>    c．多个单词组成的变量名使用<code>_</code>作为每个词的间隔。</p>
+<p>例子：<code>$s_base_dir</code>、<code>$s_red_rose_prise</code>等。</p>
+<p><strong>3.局部变量</strong><br>局部变量命名遵循以下规则：<br>    a．所有字母使用小写；<br>    b．变量使用<code>_</code>开头；<br>    c．多个单词组成的局部变量名使用<code>_</code>作为每个词间的间隔。</p>
+<p>例子：<code>$_base_dir</code>、<code>$_red_rose_price</code>等。</p>
+<p><strong>4.全局变量</strong><br>全局变量应该带前缀<code>G_</code>且所有字母大写,知道一个变量的作用域是非常重要的。例如：</p>
+<pre><code>global $G_LOG_LEVEL;
+global $G_LOG_PATH;
+</code></pre><p><strong>5.全局常量</strong><br>全局变量命名遵循以下规则：<br>    a．所有字母使用大写；<br>    b．全局变量多个单词间使用<code>_</code>作为间隔。<br>例子：</p>
+<pre><code>define(&apos;BASE_DIR&apos;,&apos;/base/dir/&apos;);
+define(&apos;RED_ROSE_PRICE&apos;,20.0);
+</code></pre><p><strong>6.session变量</strong><br>session变量命名遵循以下规则：<br>    a．所有字母使用大写；<br>    b．session变量名使用<code>S_</code>开头；<br>    c．多个单词间使用<code>_</code>间隔。</p>
+<p>例子：<code>$S_BASE_DIR</code>、<code>$S_RED_ROSE_PRICE</code>等。</p>
+<h1 id="4-1-2、类命名"><a href="#4-1-2、类命名" class="headerlink" title="4.1.2、类命名"></a>4.1.2、类命名</h1><p>PHP中类命名遵循以下规则：<br>    a．以大写字母开头；<br>    b．多个单词组成的变量名，单词之间不用间隔，各个单词首字母大写。</p>
+<p>例子：<code>class MyClass</code> 或 <code>class DbOracle</code>等。</p>
+<h1 id="4-1-3、方法或函数"><a href="#4-1-3、方法或函数" class="headerlink" title="4.1.3、方法或函数"></a>4.1.3、方法或函数</h1><p>方法或函数命名遵循以下规则：<br>    a．首字母小写；<br>    b．多个单词间不使用间隔，除第一个单词外，其他单词首字母大写。</p>
+<p>例子：<code>function myFunction()</code> 或 <code>function myDbOracle()</code>等。</p>
+<h1 id="4-1-4、缩写词"><a href="#4-1-4、缩写词" class="headerlink" title="4.1.4、缩写词"></a>4.1.4、缩写词</h1><p>当变量名或者其他命名中遇到缩写词时，参照具体的命名规则，而不采用缩写词原来的全部大写的方式。</p>
+<p>例子：<code>function myPear</code>（不是myPEAR） <code>functio getHtmlSource</code>（不是getHTMLSource）。</p>
+<h1 id="4-1-5、数据库表名"><a href="#4-1-5、数据库表名" class="headerlink" title="4.1.5、数据库表名"></a>4.1.5、数据库表名</h1><p>数据库表名命名遵循以下规范：<br>    a．表名均使用小写字母；<br>    b．对于普通数据表，使用<code>_t</code>结尾；<br>    c．对于视图，使用<code>_v</code>结尾；<br>    d．对于多个单词组成的表名，使用<code>_</code>间隔；</p>
+<p>例子：<code>user_info_t</code> 和 <code>book_store_v</code>等。</p>
+<h1 id="4-1-6、数据库字段"><a href="#4-1-6、数据库字段" class="headerlink" title="4.1.6、数据库字段"></a>4.1.6、数据库字段</h1><p>数据库字段命名遵循以下规范：<br>    a．全部使用小写；<br>    b．多个单词间使用<code>_</code>间隔。</p>
+<p>例子：<code>user_name</code>、<code>rose_price</code>等。</p>
+<h1 id="4-2、书写规则"><a href="#4-2、书写规则" class="headerlink" title="4.2、书写规则"></a>4.2、书写规则</h1><p>书写规则是指在编写 PHP 程序时，代码书写的规则，包括缩进、结构控制等方面规范。</p>
+<h1 id="4-2-1、代码缩进"><a href="#4-2-1、代码缩进" class="headerlink" title="4.2.1、代码缩进"></a>4.2.1、代码缩进</h1><p>在书写代码的时候，必须注意代码的缩进规则，我们规定代码缩进规则如下：<br>    a．使用4个空格作为缩进，而不使用tab缩进（对于<code>ultraedit</code>，可以进行预先设置）。</p>
+<p>例子：</p>
+<pre><code>for ( $i=0;$i&lt;$count;$i++ ) {
+    echo &apos;test&apos;;
+}
+</code></pre><h1 id="4-2-2、大括号-书写规则"><a href="#4-2-2、大括号-书写规则" class="headerlink" title="4.2.2、大括号{}书写规则"></a>4.2.2、大括号{}书写规则</h1><p>在程序中进行结构控制代码编写，如<code>if</code>、<code>for</code>、<code>while</code>、<code>switch</code>等结构，大括号传统的有两种书写习惯，分别如下：<br>    a．<code>{</code> 直接跟在控制语句之后，不换行，如：</p>
+<pre><code>for ( $i=0;$i&lt;$count;$i++ ) {
+    echo &apos;test&apos;;
+}
+</code></pre><p>    b．<code>{</code> 在控制语句下一行，如：</p>
+<pre><code>for ( $i=0;$&lt;$count;$i++ )
+{
+    echo &apos;test&apos;;
+}
+</code></pre><p>    其中，a是<code>PEAR</code>建议的方式，但是从实际书写中来讲，这并不影响程序的规范和影响用<code>phpdoc</code>实现文档，所以可以根据个人习惯来采用上面的两种方式，但是要求在同一个程序中，只使用其中一种，以免造成阅读的不方便。</p>
+<h1 id="4-2-3、小括号-和函数、关键词等"><a href="#4-2-3、小括号-和函数、关键词等" class="headerlink" title="4.2.3、小括号()和函数、关键词等"></a>4.2.3、小括号()和函数、关键词等</h1><p>小括号、关键词和函数遵循以下规则：<br>    a．不要把小括号和关键词紧贴在一起，要用一个空格间隔；如<code>if ( $a&lt;$b )</code>；<br>    b．小括号和函数名间没有空格；如<code>$test = date(&quot;ymdhis&quot;)</code>；<br>    c．除非必要，不要在<code>Return</code>返回语句中使用小括号。 如<code>Return $a</code>；</p>
+<h1 id="4-2-4、-符号书写"><a href="#4-2-4、-符号书写" class="headerlink" title="4.2.4、=符号书写"></a>4.2.4、=符号书写</h1><p>在程序中<code>=</code>符号的书写遵循以下规则：<br>    a．在<code>=</code>符号的两侧，均需留出一个空格；如 <code>$a = $b</code> 、<code>$a = &#39;test&#39;</code>等；<br>    b．在<code>=</code>符号与<code>!</code>、<code>=</code>、<code>&lt;</code>、<code>&gt;</code>等符号相邻时，不需留一个空格；如 <code>if ( $a == $b )</code> 、<code>if ( $a != $b )</code> 等；<br>    c．在一个申明块，或者实现同样功能的一个块中，要求<code>=</code>号尽量上下对其，左边可以为了保持对齐使用多个空格，而右边要求空一个空格；如下例：</p>
+<pre><code>$testa   = $aaa;
+$testaa  = $bbb;
+$testaaa = $ccc;
+</code></pre><h1 id="4-2-5、if-else-swith-for-while等书写"><a href="#4-2-5、if-else-swith-for-while等书写" class="headerlink" title="4.2.5、if else swith for while等书写"></a>4.2.5、if else swith for while等书写</h1><p>对于控制结构的书写遵循以下规则：<br>    a．在<code>if</code>条件判断中，如果用到常量判断条件，将常量放在等号或不等号的左边，例如：<code>if ( 6 == $errorNum )</code> ,因为如果你在等式中漏了一个等号，语法检查器会为你报错，可以很快找到错误位置，这样的写法要注意；<br>    b．<code>switch</code>结构中必须要有<code>default</code>块；<br>    c．在 <code>for</code> 和 <code>wiile</code> 的循环使用中，要警惕 <code>continue</code> 、 <code>break</code> 的使用，避免产生类似 <code>goto</code> 的问题；</p>
+<h1 id="4-2-6、类的构造函数"><a href="#4-2-6、类的构造函数" class="headerlink" title="4.2.6、类的构造函数"></a>4.2.6、类的构造函数</h1><p>如果要在类里面编写构造函数，必须遵循以下规则：<br>    a．不能在构造函数中有太多实际操作，顶多用来初始化一些值和变量；<br>    b．不能在构造函数中因为使用操作而返回<code>false</code>或者错误，因为在声明和实例化一个对象的时候，是不能返回错误的；</p>
+<h1 id="4-2-7、语句断行"><a href="#4-2-7、语句断行" class="headerlink" title="4.2.7、语句断行"></a>4.2.7、语句断行</h1><p>在代码书写中，遵循以下原则：<br>    a．尽量保证程序语句一行就是一句，而不要让一行语句太长产生折行；<br>    b．尽量不要使一行的代码太长，一般控制在120个字符以内；<br>    c．如果一行代码太长，请使用类似 <code>.=</code> 的方式断行书写；<br>    d．对于执行数据库的<code>sql</code>语句操作，尽量不要在函数内写<code>sql</code>语句，而先用变量定义<code>sql</code>语句，然后在执行操作的函数中调用定义的变量；</p>
+<p>例子：</p>
+<pre><code>$sql = &apos;SELECT username,password,address,age,postcode FROM test_t &apos;;
+$sql .= &apos; WHERE username=\&apos;aaa\&apos;&apos;;
+$res = mysql_query($sql);
+</code></pre><h1 id="4-2-8、数字"><a href="#4-2-8、数字" class="headerlink" title="4.2.8、数字"></a>4.2.8、数字</h1><p>一个在源代码中使用了的赤裸裸的数字是不可思议的数字，因为包括作者，在三个月内，没人知道它的含义。例如：</p>
+<pre><code>if ( 22 == $foo ) {
+    start_thermo_nuclear_war();
+} elseif ( 19 == $foo){
+    refund_lotso_money();
+} else {
+    cry_cause_in_lost();
+}
+</code></pre><p>你应该用<code>define()</code>来给你想表示某样东西的数值一个真正的名字，而不是采用赤裸裸的数字，例如：</p>
+<pre><code>define(&apos;PRESIDENT_WENT_CRAZY&apos;, &apos;22&apos;);
+define(&apos;WE_GOOFED&apos;, &apos;19&apos;);
+define(&apos;THEY_DIDNT_PAY&apos;, &apos;16&apos;);
+
+if ( PRESIDENT_WENT_CRAZY == $foo ) {
+    start_thermo_nuclear_war();
+} elseif ( WE_GOOFED == $foo){
+    refund_lotso_money();
+} elseif ( THEY_DIDNT_PAY == $foo ){
+    infinite_loop();
+} else {
+    cry_cause_in_lost();
+}
+</code></pre><h1 id="4-2-9、判断"><a href="#4-2-9、判断" class="headerlink" title="4.2.9、判断"></a>4.2.9、判断</h1><p>遵循以下规则：<br>    a．不能使用 <code>1/0</code> 代替 <code>true/false</code>，在 PHP 中，这是不相等的；<br>    b．不要使用非零的表达式、变量或者方法直接进行 <code>true/false</code> 判断，而必须使用严格的完整 <code>true/false</code> 判断；</p>
+<p>如：不使用 <code>if ( $a )</code> 或者 <code>if ( checka() )</code> 而使用 <code>if ( FALSE != $a )</code> 或者 <code>if ( FALSE != check() )</code>。</p>
+<h1 id="4-2-10、避免嵌入赋值"><a href="#4-2-10、避免嵌入赋值" class="headerlink" title="4.2.10、避免嵌入赋值"></a>4.2.10、避免嵌入赋值</h1><p>在程序中避免下面例子中的嵌入式赋值：<br>不使用这样的方式：</p>
+<pre><code>while ( $a != ( $c = getchar() ) ) {
+    process the character
+}
+</code></pre><h1 id="4-2-11、错误返回检测规则"><a href="#4-2-11、错误返回检测规则" class="headerlink" title="4.2.11、错误返回检测规则"></a>4.2.11、错误返回检测规则</h1><p>检查所有的系统调用的错误信息，除非你要忽略错误。</p>
+<p>为每条系统错误消息定义好系统错误文本，并记录错误<code>LOG</code>。</p>
+<h1 id="4-3、程序注释"><a href="#4-3、程序注释" class="headerlink" title="4.3、程序注释"></a>4.3、程序注释</h1><p>每个程序均必须提供必要的注释，书写注释要求规范，参照<code>PEAR</code>提供的注释要求，为今后利用<code>phpdoc</code>生成 PHP 文档做准备。<br>程序注释的原则如下：<br>    a．注释中除了文件头的注释块外，其他地方都不使用<code>//</code>注释，而使用<code>/* */</code>的注释；<br>    b．注释内容必须写在被注释对象的前面，不写在一行或者后面；</p>
+<h1 id="4-3-1、程序头注释块"><a href="#4-3-1、程序头注释块" class="headerlink" title="4.3.1、程序头注释块"></a>4.3.1、程序头注释块</h1><p>每个程序头部必须有统一的注释块，规则如下：<br>    a．必须包含本程序的描述；<br>    b．必须包含作者；<br>    c．必须包含书写日期；<br>    d．必须包含版本信息；<br>    e．必须包含项目名称；<br>    f．必须包含文件的名称；<br>    g．重要的使用说明，如类的调用方法、注意事项等；</p>
+<p>参考例子如下：</p>
+<pre><code>//
+// +---------------------------------------------------------+
+// | PHP version 4.0
+// +---------------------------------------------------------+
+// | Copyright (c) 1997-2001 The PHP Group
+// +---------------------------------------------------------+
+// | This source file is subject to of the PHP license,
+// | that is bundled with this packafile LICENSE, and is
+// | available at through the world-web at
+// | http://www.php.net/license/2_02.txt.
+// | If you did not receive a copy of the and are unable to
+// | obtain it through the world-wide-web,end a note to
+// | license@php.net so we can mail you a immediately.
+// +---------------------------------------------------------+
+// | Authors: Stig Bakken
+// | Tomas V.V.Cox
+//
+// +———————————————————+
+//
+// $Id: Common.php,v 1.8.2.3 2001/11/13 01:26:48 ssb Exp $
+</code></pre><h1 id="4-3-2、类的注释"><a href="#4-3-2、类的注释" class="headerlink" title="4.3.2、类的注释"></a>4.3.2、类的注释</h1><p>类的注释采用里面的参考例子方式：</p>
+<pre><code>/**
+ * @ Purpose:
+ * 访问数据库的类，以ODBC作为通用访问接口
+ * @Package Name: Database
+ * @Author: Forrest Gump gump@crtvu.edu.cn
+ * @Modifications:
+ * No20020523-100:
+ * odbc_fetch_into()参数位置第二和第三个位置调换
+ * John Johnson John@crtvu.edu.cn
+ * @See: (参照)
+ */
+
+class Database {
+    ...
+}
+</code></pre><h1 id="4-3-3、函数和方法的注释"><a href="#4-3-3、函数和方法的注释" class="headerlink" title="4.3.3、函数和方法的注释"></a>4.3.3、函数和方法的注释</h1><p>函数和方法的注释写在函数和方法的前面，采用类似下面例子的规则：</p>
+<pre><code>/**
+ * @Purpose:
+ * 执行一次查询
+ * @Method Name: query()
+ *
+ * @Param: string $queryStr SQL查询字符串
+ * @Param: string $username 用户名
+ *
+ * @Author: Michael Lee
+ *
+ * @Return: mixed 查询返回值（结果集对象）
+ */
+function query （ $queryStr, $username ） {
+    ...
+}
+</code></pre><h1 id="4-3-4、变量或者语句注释"><a href="#4-3-4、变量或者语句注释" class="headerlink" title="4.3.4、变量或者语句注释"></a>4.3.4、变量或者语句注释</h1><p>程序中变量或者语句的注释遵循以下原则：<br>    a．写在变量或者语句的前面一行，而不写在同行或者后面；<br>    b．注释采用<code>/* */</code>的方式；<br>    c．每个函数前面要包含一个注释块。内容包括函数功能简述，输入/输出参数，预期的返回值，出错代码定义；<br>    d．注释完整规范；<br>    e．把已经注释掉的代码删除，或者注明这些已经注释掉的代码仍然保留在源码中的特殊原因。</p>
+<p>例子：</p>
+<pre><code>/**
+ * @Purpose:
+ * 数据库连接用户名
+ * @Attribute/Variable Name: db_user_name
+ * @Type: string
+ */
+var db_user_name;
+</code></pre><h1 id="4-4、其它规范"><a href="#4-4、其它规范" class="headerlink" title="4.4、其它规范"></a>4.4、其它规范</h1><h1 id="4-4-1、PHP代码标记"><a href="#4-4-1、PHP代码标记" class="headerlink" title="4.4.1、PHP代码标记"></a>4.4.1、PHP代码标记</h1><p>所有的PHP程序代码块标记均使用<code>&lt;?php</code> ，不使用短标记<code>&lt;?</code>。</p>
+<h1 id="4-4-2、程序文件名、目录名"><a href="#4-4-2、程序文件名、目录名" class="headerlink" title="4.4.2、程序文件名、目录名"></a>4.4.2、程序文件名、目录名</h1><p>程序文件名和目录名命名均采用有意义的英文方式命名，不使用拼音或无意义的字母，同时均必须使用小写字母，多个词间使用<code>_</code>间隔。</p>
+<h1 id="4-4-3、PHP项目通常的文件目录结构"><a href="#4-4-3、PHP项目通常的文件目录结构" class="headerlink" title="4.4.3、PHP项目通常的文件目录结构"></a>4.4.3、PHP项目通常的文件目录结构</h1><p>建议在开发规范的独立的PHP项目时，使用规范的文件目录结构，这有助于提高项目的逻辑结构合理性，对应扩展和合作，以及团队开发均有好处。</p>
+<p>一个完整独立的PHP项目通常的文件和目录结构如下：<br><code>/</code> 项目根目录<br><code>/manage</code> 后台管理文件存放目录<br><code>/css</code> css文件存放目录<br><code>/doc</code> 存放项目文档<br><code>/images</code> 所有图片文件存放路径（在里面根据目录结构设立子目录）<br><code>/scripts</code> 客户端js脚本存放目录<br><code>/tpl</code> 网站所有html的模版文件存放目录<br><code>/error.php</code> 错误处理文件（可以定义到apache的错误处理中）<br>以上目录结构是通常的目录结构，根据具体应用的具体情况，可以考虑不用完全遵循，但是尽量做到规范化。</p>
+<h1 id="4-4-4、PHP和HTML代码的分离问题"><a href="#4-4-4、PHP和HTML代码的分离问题" class="headerlink" title="4.4.4、PHP和HTML代码的分离问题"></a>4.4.4、PHP和HTML代码的分离问题</h1><p>    对性能要求不是很高的项目和应用，我们建议不采用 PHP 和 HTML 代码直接混排的方式书写代码，而采用 PHP 和 HTML 代码分离的方式，即采用模版的方式处理，这样一方面对程序逻辑结构更加清晰有利，也有助于开发过程中人员的分工安排，同时还对日后项目的页面升级该版提供更多便利。</p>
+<p>对于一些特殊情况，比如对性能要求很高的应用，可以不采用模版方式。</p>
+<h1 id="4-4-5、PHP项目开发中的程序逻辑结构"><a href="#4-4-5、PHP项目开发中的程序逻辑结构" class="headerlink" title="4.4.5、PHP项目开发中的程序逻辑结构"></a>4.4.5、PHP项目开发中的程序逻辑结构</h1><p>    对于 PHP 项目开发，尽量采用 <code>OOP</code> 的思想开发，尤其在 PHP5 以后，对于面向对象的开发功能大大提高。</p>
+<p>    在 PHP 项目中，我们建议将独立的功能模块尽量写成函数调用，对应一整块业务逻辑，我们建议封装成类，既可以提高代码可读性，也可以提高代码重用性。比如，我们通常将对数据库的接口封装成数据库类，有利于平台的移植。</p>
+<p>    重复的代码要做成公共的库。（除了我们在 <code>plug-in</code> 产品上遇到的情况，该产品系列有多个相类似的产品，为了尽可能地减少安装包尺寸，不适合将这些产品共用的所有函数做成公共的库）</p>
+<h1 id="5、特定环境下PHP编码特殊规范"><a href="#5、特定环境下PHP编码特殊规范" class="headerlink" title="5、特定环境下PHP编码特殊规范"></a>5、特定环境下PHP编码特殊规范</h1><h1 id="5-1、变量定义"><a href="#5-1、变量定义" class="headerlink" title="5.1、变量定义"></a>5.1、变量定义</h1><p>    XXX环境下的 PHP 代码编写要求所有的变量均需要先申明后使用，否则会有错误信息，对于数组，在使用一个不确定的 <code>key</code> 时，比如先进行 <code>isset()</code> 的判断，然后再使用；比如下面的代码：</p>
+<pre><code>$array ＝ array();
+$var ＝ isset( $array[3] ) ? $array[3] : &apos;&apos;；
+</code></pre><h1 id="5-2、引用的使用"><a href="#5-2、引用的使用" class="headerlink" title="5.2、引用的使用"></a>5.2、引用的使用</h1><p>    引用在程序中使用比较多，为了公用同一个内存，而不需要另外进行复制，XXX环境下的引用使用时，需要注意下面的情况；</p>
+<p>    在对函数的输入参数中使用引用时，不能在调用的时候在输入参数前加 <code>&amp;</code> 来引用，而直接使用该变量即可，同时必须在函数定义的时候说明输入参数来自引用，比如下面的代码：</p>
+<pre><code>$a ＝ 1；
+function ab( &amp;$var ) {
+    $var ++；
+    return $var；
+}
+$b ＝ ab($a); // 注意，此处不能使用 $b ＝ ab(&amp;$a)的方式；
+echo $b.&quot;\n&quot;；
+echo $a.&quot;\n&quot;；
+</code></pre><p>此时 <code>$a</code> 和 <code>$b</code> 都是 2；<br>XXX环境下对引用的特殊要求源自 <code>php.ini</code> 文件里面的 <code>allow_call_time_pass_reference</code> 项设置，对外公开的版本是 <code>On</code>，这样就可以支持&amp;直接加到调用函数时变量前面进行引用，但是这一方法遭到抗议，并可能在将来版本的 <code>PHP/Zend</code> 里不再支持。受到鼓励的指定哪些参数按引用传递的方法是在函数声明里。你被鼓励尝试关闭这一选项（使用<code>off</code>，XXX的所有运行环境下都是<code>off</code>）并确认你的脚本仍能正常工作，以保证在将来版本的语言里它们仍能工作。</p>
+<h1 id="5-3、变量的输入输出"><a href="#5-3、变量的输入输出" class="headerlink" title="5.3、变量的输入输出"></a>5.3、变量的输入输出</h1><p>    在XXX环境下，对 web 通过 <code>GET</code> 或者 <code>POST</code> 方法传递来的参数均要求进行严格的过滤和合法性验证，不推荐使用直接的<code>$_GET</code> 、 <code>$_POST</code> 或者 $<code>_REQUEST</code> 获取，而通过 XXX 的 XXX_yiv 模块提供的方法获取和过滤处理。</p>
+<p>摘自：<a href="https://www.cnblogs.com/sq45711478/p/6235789.html" target="_blank" rel="noopener">https://www.cnblogs.com/sq45711478/p/6235789.html</a></p>
+
+	  	
+	  
+	</div>
+    <footer class="article-footer">
+      <a data-url="https://lizongxue.github.io/2017/01/22/PHP开发规范/" data-id="cjsfuieu3000ecsex4ktmkv34" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php规范/">php规范</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/07/linux-用户组，用户，增删改/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          linux 用户组，用户，增删改
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/08/Firefox伪造请求头/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Firefox伪造请求头</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java爬虫/">java爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js函数/">js函数</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js插件/">js插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/redis/">redis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/solr/">solr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日记/">心情日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ckeditor/">ckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreseek/">coreseek</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dedecms/">dedecms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix/">heritrix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heritrix3-1/">heritrix3.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/highcharts标签/">highcharts标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kill/">kill</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux常用命令/">linux常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql常见问题/">mysql常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php规范/">php规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replace/">replace</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vagrant/">vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/情感/">情感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感恩/">感恩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ckeditor/" style="font-size: 10px;">ckeditor</a> <a href="/tags/coreseek/" style="font-size: 10px;">coreseek</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/dedecms/" style="font-size: 10px;">dedecms</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/heritrix/" style="font-size: 10px;">heritrix</a> <a href="/tags/heritrix3-1/" style="font-size: 10px;">heritrix3.1</a> <a href="/tags/highcharts标签/" style="font-size: 10px;">highcharts标签</a> <a href="/tags/kill/" style="font-size: 10px;">kill</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux常用命令/" style="font-size: 10px;">linux常用命令</a> <a href="/tags/mysql常见问题/" style="font-size: 10px;">mysql常见问题</a> <a href="/tags/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tags/php规范/" style="font-size: 10px;">php规范</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/replace/" style="font-size: 10px;">replace</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 20px;">svn</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感恩/" style="font-size: 10px;">感恩</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2099/03/">March 2099</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2099/03/11/ganenpengyou/">感恩-来自一位可敬的朋友</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/charles抓包工具的中文乱码解决方法/">charles抓包工具的中文乱码解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/sssss/">忘记 iOS 的访问限制密码，如何找回或重设？</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/08/安装Scrapy-报错/">安装Scrapy   报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/coreseek搜索中文为0-怎么解决-看我原创/">coreseek搜索中文为0 怎么解决 看我原创</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 LZX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
